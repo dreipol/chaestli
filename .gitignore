@@ -64,3 +64,5 @@ typings/
 # Editor config files
 .idea/
 
+.sass-cache
+
