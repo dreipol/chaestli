@@ -1,0 +1,39 @@
+@import '../vendor/@dreipol/scss-utils/mixins/at-root';
+
+@mixin grid--base {} // stylelint-disable block-no-empty
+
+@mixin grid--container($cfg: ()) {
+    // Merge default values with config
+    $defaults: (container-size: null);
+    $cfg: map-merge($defaults, $cfg);
+
+    // Write config values into variables for code readability
+    $cfg-container-size: map-get($cfg, 'container-size');
+
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+
+    max-width: $cfg-container-size;
+}
+
+@mixin grid--row {
+    display: flex;
+    flex-flow: row wrap;
+
+    // NOTE: Fixes an image scaling issue of flex children in IE11.
+    // @link https://github.com/philipwalton/flexbugs#5-column-flex-items-dont-always-preserve-intrinsic-aspect-ratios
+    @include dp-at-root(html, '.ie11') {
+        min-height: 1px;
+    }
+}
+
+@mixin grid--item {
+    position: relative;
+    min-height: 1px;
+    max-width: 100%;
+}

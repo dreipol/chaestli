@@ -1,0 +1,68 @@
+@import '../vendor/@dreipol/scss-utils/functions/str-split';
+@import '../vendor/@dreipol/scss-utils/functions/list-expand-directions';
+/// Returns the current BEM root by separateing the rightmost part and stripping it from any element or modifier
+/// @return {string} - The current BEM root
+///
+@function _grid--bem-root() {
+    $root-selector: nth(nth(&, 1), 1);
+    $root-selector: nth(dp-str-split($root-selector, '__'), 1);
+    $root-selector: nth(dp-str-split($root-selector, '--'), 1);
+    $root-selector: '.#{nth(dp-str-split($root-selector, '.'), 1)}';
+
+    @if (str-index($root-selector, '.') != 1) {
+        @error 'Provided root selector `#{$root-selector}` is no valid class selector!';
+    }
+
+    @return $root-selector;
+}
+
+/// Converts a BEM root selector and a list of modules into a selector list.
+/// @param {string} $selector - A root module name (BEM) including a dot.
+/// @param {string} $item-modules - One or multiple BEM submodule names without dashes.
+/// @return {string} - A stringified list of bem modules
+/// @example scss - Basic usage: input
+///     $module-list: _grid--item-module-list('.form', 'label', 'input');
+///     #{$module-list} { display: block; }
+/// @output css - Basic usage: output
+///     .form--label, .form--input { display: block; }
+///
+@function _grid--col-name-list($selector, $item-modules...) {
+    $item-modules-list: '';
+
+    @each $item-module in $item-modules {
+        $i: index($item-modules, $item-module);
+        $sep: if($i == 1, '', ', ');
+        $item-modules-list: ($item-modules-list + $sep + '#{$selector}--#{$item-module}');
+    }
+
+    @return $item-modules-list;
+}
+
+/// Expands a given attribute into a 4-value gutter configuration
+/// @param {number|List} $type - The property type that is being written. Example: 'padding'
+///
+@function _grid--configurate-gutter($gutter) {
+    @if (type-of($gutter) == 'list') {
+        @return dp-list-expand-directions($gutter);
+    } @else {
+        @return (null, $gutter, null, $gutter);
+    }
+}
+
+/// Writes the desired grid-gutter values.
+/// @param {string} $type - The property type that is being written. Example: 'padding'
+/// @param {List} $gutter-list - A list of gutter sizes with a length of 4.
+/// @param {number} $modifier - A modifier to the gutter size that is being written.
+///
+@mixin _grid--write-gutter($type, $gutter-list, $modifier: 1) {
+    $direction-list: ('top', 'left', 'bottom', 'right');
+
+    @for $i from 1 through length($direction-list) {
+        $dir: nth($direction-list, $i);
+        $val: nth($gutter-list, $i);
+
+        @if ($val) {
+            #{$type}-#{$dir}: ($val * $modifier);
+        }
+    }
+}

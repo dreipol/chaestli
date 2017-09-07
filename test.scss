@@ -1,0 +1,13 @@
+@import './index';
+
+body {
+    @include grid--root;
+
+    .container {
+        @include grid--container;
+    }
+
+    .col {
+        @include grid--scaffold(( ratio: 10 / 5, mq: '<=sm' ));
+    }
+}

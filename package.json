@@ -1,0 +1,51 @@
+{
+  "name": "chaestli",
+  "version": "0.0.0",
+  "description": "A scss grid framework made in Switzerland and brought to you by Dreipol\"",
+  "main": "_index.scss",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm run build && npm run lint && sass test.scss",
+    "lint": "stylelint _index.scss lib/**/*.scss",
+    "clean": "rm -rf vendor",
+    "prebuild": "npm run clean && mkdir vendor",
+    "build": "npm run prebuild && rsync -rm `pwd`/node_modules/* --include=\"*.scss\" --include=\"*/\" --exclude=\"*\" vendor",
+    "prepublish": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreipol/chaestli.git"
+  },
+  "files": [
+    "vendor",
+    "lib",
+    "_index.scss"
+  ],
+  "keywords": [
+    "grid",
+    "scss",
+    "framework",
+    "css",
+    "responsive"
+  ],
+  "author": {
+    "name": "dreipol GmbH",
+    "email": "hello@dreipol.ch",
+    "url": "http://dreipol.ch"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dreipol/chaestli/issues"
+  },
+  "homepage": "https://github.com/dreipol/chaestli#readme",
+  "dependencies": {
+    "@dreipol/scss-mq": "0.0.4",
+    "@dreipol/scss-utils": "0.0.0"
+  },
+  "devDependencies": {
+    "@dreipol/stylelint-config": "^2.0.2",
+    "stylelint": "^8.0.0"
+  }
+}
