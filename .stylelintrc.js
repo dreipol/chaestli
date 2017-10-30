@@ -1,3 +1,3 @@
 module.exports = {
-    extends: '@dreipol/stylelint-config',
+  extends: '@dreipol/stylelint-config',
 };

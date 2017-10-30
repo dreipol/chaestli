@@ -1,15 +1,16 @@
 {
   "name": "chaestli",
   "version": "0.0.0",
-  "description": "A scss grid framework made in Switzerland and brought to you by Dreipol\"",
+  "description": "A scss grid framework made in Switzerland and brought to you by dreipol",
   "main": "_index.scss",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "npm run build && npm run lint && sass test.scss",
+    "test": "npm run build && npm run lint && node-sass test.scss",
     "lint": "stylelint _index.scss lib/**/*.scss",
     "clean": "rm -rf vendor",
+    "demo": "node-sass --output-style=compressed -o=demo demo/scss/demo.scss",
     "prebuild": "npm run clean && mkdir vendor",
     "build": "npm run prebuild && rsync -rm `pwd`/node_modules/* --include=\"*.scss\" --include=\"*/\" --exclude=\"*\" vendor",
     "prepublish": "npm test"
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@dreipol/stylelint-config": "^2.0.2",
+    "node-sass": "^4.5.3",
     "stylelint": "^8.0.0"
   }
 }
