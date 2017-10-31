@@ -1,8 +1,4 @@
-/// Estimated scrollbar size
+/// BEM presets
 ///
-$sz--scrollbar-offset: 16px !default;
-
-
-/// Grid spacings
-///
-/// See: `structure/grid/_grid__base.scss`
+$bem-element-separator: '__' !default;
+$bem-modifier-separator: '--' !default;

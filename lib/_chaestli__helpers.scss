@@ -1,5 +1,7 @@
 @import '../vendor/@dreipol/scss-utils/functions/str-split';
 @import '../vendor/@dreipol/scss-utils/functions/list-expand-directions';
+
+
 /// Returns the current BEM root by separateing the rightmost part and stripping it from any element or modifier
 /// @return {string} - The current BEM root
 ///
@@ -21,7 +23,7 @@
 /// @param {string} $item-modules - One or multiple BEM submodule names without dashes.
 /// @return {string} - A stringified list of bem modules
 /// @example scss - Basic usage: input
-///     $module-list: _grid--item-module-list('.form', 'label', 'input');
+///     $module-list: _grid--col-name-list('.form', 'label', 'input');
 ///     #{$module-list} { display: block; }
 /// @output css - Basic usage: output
 ///     .form--label, .form--input { display: block; }
@@ -32,7 +34,7 @@
     @each $item-module in $item-modules {
         $i: index($item-modules, $item-module);
         $sep: if($i == 1, '', ', ');
-        $item-modules-list: ($item-modules-list + $sep + '#{$selector}--#{$item-module}');
+        $item-modules-list: ($item-modules-list + $sep + '#{$selector}#{$bem-element-separator}#{$item-module}');
     }
 
     @return $item-modules-list;

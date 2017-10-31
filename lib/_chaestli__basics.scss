@@ -1,27 +1,16 @@
 @import '../vendor/@dreipol/scss-utils/mixins/at-root';
 
-@mixin grid--base {} // stylelint-disable block-no-empty
 
-@mixin grid--container($cfg: ()) {
-    // Merge default values with config
-    $defaults: (container-size: null);
-    $cfg: map-merge($defaults, $cfg);
-
-    // Write config values into variables for code readability
-    $cfg-container-size: map-get($cfg, 'container-size');
-
+@mixin grid--define-container {
     display: flex;
     flex-flow: column nowrap;
     width: 100%;
 
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     overflow: hidden;
-
-    max-width: $cfg-container-size;
 }
 
-@mixin grid--row {
+@mixin grid--define-row {
     display: flex;
     flex-flow: row wrap;
 
@@ -32,7 +21,7 @@
     }
 }
 
-@mixin grid--item {
+@mixin grid--define-col {
     position: relative;
     min-height: 1px;
     max-width: 100%;
