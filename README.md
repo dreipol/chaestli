@@ -14,7 +14,7 @@ npm i chaestli -S
 
 # Documentation
 
-TODO
+While the documentation is under construction, you can find some barebone examples in the [demo page](demo/index.html)
 
 
 [travis-image]:https://img.shields.io/travis/dreipol/chaestli.svg?style=flat-square
