@@ -4,18 +4,18 @@
     }
 
     .demo__col.demo__col--gazelle {
-        @include grid--span((ratio: 2/12));
+        @include grid--span((ratio: 1/6));
     }
 
     .demo__col.demo__col--lion {
-        @include grid--span((ratio: 3/12));
+        @include grid--span((ratio: 1/4));
     }
 
     .demo__col.demo__col--rhino {
-        @include grid--span((ratio: 6/12));
+        @include grid--span((ratio: 1/2));
     }
 
     .demo__col.demo__col--elephant {
-        @include grid--span((ratio: 12/12));
+        @include grid--span((ratio: 1/1));
     }
 }
