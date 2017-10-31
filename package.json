@@ -7,10 +7,12 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "npm run build && npm run lint && node-sass test.scss",
+    "test": "npm run build && npm run lint && npm run test-ruby && npm run test-node",
+    "test-ruby": "sass test.scss",
+    "test-node": "node-sass test.scss",
     "lint": "stylelint _index.scss lib/**/*.scss",
     "clean": "rm -rf vendor",
-    "demo": "node-sass --output-style=compressed -o=demo demo/scss/demo.scss",
+    "demo": "node-sass --output-style=compressed -o=demo demo/scss/index.scss",
     "prebuild": "npm run clean && mkdir vendor",
     "build": "npm run prebuild && rsync -rm `pwd`/node_modules/* --include=\"*.scss\" --include=\"*/\" --exclude=\"*\" vendor",
     "prepublish": "npm test"
