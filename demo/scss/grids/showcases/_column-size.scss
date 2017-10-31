@@ -1,0 +1,21 @@
+.demo.demo--column-size-showcase {
+    .demo__col.demo__col--ant {
+        @include grid--span((ratio: 1/12));
+    }
+
+    .demo__col.demo__col--gazelle {
+        @include grid--span((ratio: 2/12));
+    }
+
+    .demo__col.demo__col--lion {
+        @include grid--span((ratio: 3/12));
+    }
+
+    .demo__col.demo__col--rhino {
+        @include grid--span((ratio: 6/12));
+    }
+
+    .demo__col.demo__col--elephant {
+        @include grid--span((ratio: 12/12));
+    }
+}

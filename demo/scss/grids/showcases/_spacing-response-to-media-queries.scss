@@ -1,0 +1,14 @@
+.grid.grid--spacing-response-to-media-queries-showcase {
+    $spacing: (
+        (mq: 'xs', gutter: 4px, edge: 2px),
+        (mq: 'sm', gutter: 8px, edge: 2px),
+        (mq: 'md', gutter: 16px, edge: 64px),
+        (mq: 'lg', gutter: 32px, edge: 64px),
+        (mq: 'xl', gutter: 48px, edge: 128px),
+        (mq: 'xxl', gutter: 64px, edge: 128px),
+    );
+
+    @each $value in $spacing {
+        @include grid--space($value);
+    }
+}

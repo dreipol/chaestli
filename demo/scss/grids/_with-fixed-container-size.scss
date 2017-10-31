@@ -1,0 +1,17 @@
+.grid.grid--with-fixed-container-size {
+    $scrollbar-offset: 16px;
+    $container-sizes: (
+        (mq: 'xs', container-size: none),
+        (mq: 'sm', container-size: $screen-sm-min),
+        (mq: 'md', container-size: ($screen-md-min - $scrollbar-offset - 8px)),
+        (mq: 'lg', container-size: ($screen-lg-min - $scrollbar-offset - 8px)),
+        (mq: 'xl', container-size: ($screen-xl-min - $scrollbar-offset - 4px)),
+        (mq: 'xxl', container-size: ($screen-xxl-min - $scrollbar-offset - 8px)),
+    );
+
+    @include grid--root();
+
+    @each $value in $container-sizes {
+        @include grid--constrain($value);
+    }
+}

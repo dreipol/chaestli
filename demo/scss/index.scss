@@ -1,0 +1,40 @@
+@import '../../index';
+
+@import './reset';
+@import './typography';
+@import './demo';
+@import './documentation';
+
+@import 'grids/with-fixed-container-size';
+@import 'grids/with-demo-columns';
+@import 'grids/with-basic-spacing';
+
+@import 'grids/showcases/plain';
+@import 'grids/showcases/fixed-container-size';
+@import 'grids/showcases/column-size';
+@import 'grids/showcases/basic-spacing';
+@import 'grids/showcases/four-side-spacing';
+@import 'grids/showcases/edge-spacing';
+@import 'grids/showcases/spacing-response-to-media-queries';
+@import 'grids/showcases/spanning-response-to-media-queries';
+@import 'grids/showcases/custom-classes';
+@import 'grids/showcases/nested-grids';
+
+
+html {
+    box-sizing: border-box;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 62.5%;
+}
+
+body {
+    padding: 5.6rem 0;
+}

@@ -1,0 +1,16 @@
+.demo.demo--spanning-response-to-media-queries-showcase {
+    $spanning: (
+        (mq: 'xs', ratio: 1/1),
+        (mq: 'sm', ratio: 1/2),
+        (mq: 'md', ratio: 1/4),
+        (mq: 'lg', ratio: 1/6),
+        (mq: 'xl', ratio: 1/12),
+        (mq: 'xxl', ratio: 1/12),
+    );
+
+    .demo__col.demo__col--ant {
+        @each $value in $spanning {
+            @include grid--span($value);
+        }
+    }
+}

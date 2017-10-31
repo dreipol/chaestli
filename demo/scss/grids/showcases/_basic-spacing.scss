@@ -1,0 +1,3 @@
+.grid.grid--basic-spacing-showcase {
+    @include grid--space((gutter: 32px, edge: 0));
+}
