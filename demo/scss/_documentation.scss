@@ -10,6 +10,7 @@
     );
 
     @include grid--root((container: 'block'));
+    @include grid--space((container: 'block', edge: 16px));
 
     @each $value in $container-sizes {
         @include grid--constrain($value);
