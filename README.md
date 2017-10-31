@@ -14,7 +14,7 @@ npm i chaestli -S
 
 # Documentation
 
-While the documentation is under construction, you can find some barebone examples in the [demo page](https://dreipol.github.io/chaestli/demo/index.html).
+While the documentation is under construction, you can find some barebone examples in the [demo page](https://dreipol.github.io/chaestli/demo)
 
 
 [travis-image]:https://img.shields.io/travis/dreipol/chaestli.svg?style=flat-square
