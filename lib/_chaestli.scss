@@ -6,9 +6,10 @@
 ///
 @import '../vendor/@dreipol/scss-mq/index';
 @import '../vendor/@dreipol/scss-utils/mixins/at-root';
-@import 'chaestli__vars';
-@import 'chaestli__helpers';
-@import 'chaestli__basics';
+@import './chaestli__vars';
+@import './chaestli__helpers';
+@import './chaestli__basics';
+
 
 /// Fix buggy support for percentage values of `flex-basis` in IE10 and IE11.
 /// @link https://github.com/philipwalton/flexbugs#7-flex-basis-doesnt-account-for-box-sizingborder-box
