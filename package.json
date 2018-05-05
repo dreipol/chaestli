@@ -1,6 +1,6 @@
 {
   "name": "chaestli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A scss grid framework made in Switzerland and brought to you by dreipol",
   "main": "_index.scss",
   "directories": {
