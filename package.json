@@ -44,12 +44,12 @@
   },
   "homepage": "https://github.com/dreipol/chaestli#readme",
   "dependencies": {
-    "@dreipol/scss-mq": "^0.1.2",
-    "@dreipol/scss-utils": "^0.0.6"
+    "@dreipol/scss-mq": "^0.1.3",
+    "@dreipol/scss-utils": "^0.1.0"
   },
   "devDependencies": {
-    "@dreipol/stylelint-config": "^2.0.2",
-    "node-sass": "4.6.1",
-    "stylelint": "^8.0.0"
+    "@dreipol/stylelint-config": "^4.0.0",
+    "node-sass": "4.9.3",
+    "stylelint": "^9.6.0"
   }
 }
