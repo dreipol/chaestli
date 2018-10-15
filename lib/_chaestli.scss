@@ -37,7 +37,7 @@
 @mixin grid--root($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: _grid--bem-root(),
+        root: grid--bem-root,
         mq: null,
         container: 'container',
         row: 'row',
@@ -53,19 +53,19 @@
     $cfg-cols: map-get($cfg, 'cols');
 
     // Calculate additionally needed values
-    $col-names: _grid--col-name-list($cfg-root, $cfg-cols...);
+    $col-names: grid--col-name-list($cfg-root, $cfg-cols...);
 
     @include mq($cfg-mq) {
         #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-            @include grid--define-container();
+            @include grid--define-container;
         }
 
         #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
-            @include grid--define-row();
+            @include grid--define-row;
         }
 
         #{$col-names} {
-            @include grid--define-col();
+            @include grid--define-col;
         }
     }
 }
@@ -79,7 +79,7 @@
 @mixin grid--constrain($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: _grid--bem-root(),
+        root: grid--bem-root,
         mq: null,
         container: 'container',
         container-size: none,
@@ -113,7 +113,7 @@
 @mixin grid--space($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: _grid--bem-root(),
+        root: grid--bem-root,
         mq: null,
         container: 'container',
         row: 'row',
@@ -133,13 +133,13 @@
     $cfg-edge: map-get($cfg, 'edge');
 
     // Calculate additionally needed values
-    $col-names: _grid--col-name-list($cfg-root, $cfg-cols...);
-    $gutters: _grid--configurate-gutter($cfg-gutter);
-    $edges: _grid--configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
+    $col-names: grid--col-name-list($cfg-root, $cfg-cols...);
+    $gutters: grid--configurate-gutter($cfg-gutter);
+    $edges: grid--configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
 
     @include mq($cfg-mq) {
         #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-            @include _grid--write-gutter('padding', $edges);
+            @include grid--write-gutter('padding', $edges);
 
             #{$cfg-root}#{$bem-element-separator}#{$cfg-container}:not(.u-iknowwhatimdoing) {
                 // NOTE: Nested containers are not allowed, please nest rows/cols instead!
@@ -156,11 +156,11 @@
         }
 
         #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
-            @include _grid--write-gutter('margin', $gutters, -0.5);
+            @include grid--write-gutter('margin', $gutters, -0.5);
         }
 
         #{$col-names} {
-            @include _grid--write-gutter('padding', $gutters, 0.5);
+            @include grid--write-gutter('padding', $gutters, 0.5);
         }
     }
 }
@@ -190,7 +190,7 @@
     @include mq($cfg-mq) {
         flex: 0 0 $percentage;
 
-        @include grid--fix-ie-flex-basis() {
+        @include grid--fix-ie-flex-basis {
             #{$cfg-fallback-prop}: $percentage;
         }
     }

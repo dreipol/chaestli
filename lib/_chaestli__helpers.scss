@@ -5,7 +5,7 @@
 /// Returns the current BEM root by separateing the rightmost part and stripping it from any element or modifier
 /// @return {string} - The current BEM root
 ///
-@function _grid--bem-root() {
+@function grid--bem-root() {
     $root-selector: nth(nth(&, 1), 1);
     $root-selector: nth(dp-str-split($root-selector, '__'), 1);
     $root-selector: nth(dp-str-split($root-selector, '--'), 1);
@@ -28,7 +28,7 @@
 /// @output css - Basic usage: output
 ///     .form--label, .form--input { display: block; }
 ///
-@function _grid--col-name-list($selector, $item-modules...) {
+@function grid--col-name-list($selector, $item-modules...) {
     $item-modules-list: '';
 
     @each $item-module in $item-modules {
@@ -43,7 +43,7 @@
 /// Expands a given attribute into a 4-value gutter configuration
 /// @param {number|List} $type - The property type that is being written. Example: 'padding'
 ///
-@function _grid--configurate-gutter($gutter) {
+@function grid--configurate-gutter($gutter) {
     @if (type-of($gutter) == 'list') {
         @return dp-list-expand-directions($gutter);
     } @else {
@@ -56,7 +56,7 @@
 /// @param {List} $gutter-list - A list of gutter sizes with a length of 4.
 /// @param {number} $modifier - A modifier to the gutter size that is being written.
 ///
-@mixin _grid--write-gutter($type, $gutter-list, $modifier: 1) {
+@mixin grid--write-gutter($type, $gutter-list, $modifier: 1) {
     $direction-list: ('top', 'left', 'bottom', 'right');
 
     @for $i from 1 through length($direction-list) {
