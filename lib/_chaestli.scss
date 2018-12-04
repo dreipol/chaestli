@@ -37,7 +37,7 @@
 @mixin grid--root($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: grid--bem-root,
+        root: grid--bem-root(),
         mq: null,
         container: 'container',
         row: 'row',
@@ -79,7 +79,7 @@
 @mixin grid--constrain($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: grid--bem-root,
+        root: grid--bem-root(),
         mq: null,
         container: 'container',
         container-size: none,
@@ -113,7 +113,7 @@
 @mixin grid--space($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: grid--bem-root,
+        root: grid--bem-root(),
         mq: null,
         container: 'container',
         row: 'row',
