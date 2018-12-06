@@ -1,7 +1,7 @@
+/* stylelint-disable scss/declaration-nested-properties */
 ////
 /// Grid library for all your basic grid needs!
 ////
-
 /// Dependencies and components
 ///
 @import '../vendor/@dreipol/scss-mq/index';
@@ -114,11 +114,12 @@
     // Merge default values with config
     $defaults: (
         root: grid--bem-root(),
-        mq: null,
         container: 'container',
         row: 'row',
         cols: ('col'),
         gutter: 0,
+        mq: null,
+        debug: null,
         edge: null,
     );
     $cfg: map-merge($defaults, $cfg);
@@ -131,6 +132,7 @@
     $cfg-cols: map-get($cfg, 'cols');
     $cfg-gutter: map-get($cfg, 'gutter');
     $cfg-edge: map-get($cfg, 'edge');
+    $cfg-debug: map-get($cfg, 'debug');
 
     // Calculate additionally needed values
     $col-names: grid--col-name-list($cfg-root, $cfg-cols...);
@@ -157,6 +159,14 @@
 
         #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
             @include grid--write-gutter('margin', $gutters, -0.5);
+
+            // enable the grid debugging
+            @if $cfg-debug {
+                @include grid--debugger((
+                    edge: $cfg-edge,
+                    gutter: $cfg-gutter
+                ), $cfg-debug);
+            }
         }
 
         #{$col-names} {
@@ -201,4 +211,74 @@
 @mixin grid--col($cfg: ()) {
     @include grid--define-col;
     @include grid--span($cfg);
+}
+
+/// Allows the grid debugging coloring the rows background showing the columns and the edges
+/// @param {number} $grid-cfg.gutter - The inner gutter size
+/// @param {number} $grid-cfg.edge - The edge clearance in any spacial unit
+/// @param {number} $cfg.columns - The amount of columns we want to debug
+/// @param {number} $cfg.column-color - The color used to debug the colors
+/// @param {number} $cfg.gutter-color - The color used to debug the gutter
+/// @param {number} $cfg.edge-color - The color to highlight the external edges
+///
+@mixin grid--debugger(
+    $grid-cfg,
+    $cfg
+) {
+    $defaults: (
+        column-color: rgba(0, 0, 0, 0.2),
+        edge-color: rgba(0, 0, 0, 0),
+        gutter-color: rgba(0, 0, 0, 0),
+        columns: null
+    );
+
+    @if not map-get($cfg, 'columns') {
+        @error 'Please define the columns amount to debug the grid';
+    }
+
+    $cfg: map-merge($defaults, $cfg);
+
+    $cfg-gutter: map-get($grid-cfg, 'gutter');
+    $cfg-edge: map-get($grid-cfg, 'edge');
+    $cfg-columns: map-get($cfg, 'columns');
+    $cfg-gutter-color: map-get($cfg, 'gutter-color');
+    $cfg-edge-color: map-get($cfg, 'edge-color');
+    $cfg-column-color: map-get($cfg, 'column-color');
+
+    $half-gutter: $cfg-gutter / 2;
+    $gradient-start: $half-gutter;
+    $gradient-end: calc(100% - #{$half-gutter});
+
+    position: relative;
+    background: {
+        image: linear-gradient(
+            to right,
+            $cfg-gutter-color $gradient-start,
+            $cfg-column-color $gradient-start,
+            $cfg-column-color $gradient-end,
+            $cfg-gutter-color $gradient-end
+        );
+        size: 1 / $cfg-columns * 100%;
+        position: left top;
+        clip: content-box;
+        origin: content-box;
+    };
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: $cfg-edge;
+        background: $cfg-edge-color;
+    }
+
+    &::before {
+        right: calc(100% - #{$half-gutter});
+    }
+
+    &::after {
+        left: calc(100% - #{$half-gutter});
+    }
 }
