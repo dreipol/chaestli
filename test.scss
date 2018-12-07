@@ -3,6 +3,7 @@
 body {
     @include grid--root;
     @include grid--constrain;
+    @include grid--space((mq: 'xxl', gutter: 24px, edge: 28px, debug:(columns: 12)));
 
     .container {
         @include grid--define-container;
