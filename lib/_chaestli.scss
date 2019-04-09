@@ -70,6 +70,38 @@
     }
 }
 
+/// Move a column in any direction using its css margin property
+/// @param {string} $cfg.direction - Either one of these values: `left` `right` `top` `bottom`
+/// @param {unitless} $cfg.ratio - A unitless ratio value (0 < x <= 1)
+/// @param {string} $cfg.mq - A media expression that is parseable by `include-media`
+///
+@mixin grid--move-col($cfg) {
+    $defaults: (
+        direction: null,
+        ratio: null,
+        mq: null,
+    );
+
+    $cfg: map-merge($defaults, $cfg);
+    $cfg-direction: map-get($cfg, 'direction');
+    $cfg-ratio: map-get($cfg, 'ratio');
+    $cfg-mq: map-get($cfg, 'mq');
+
+    $percentage: (100% * $cfg-ratio);
+
+    margin-#{$cfg-direction}: $percentage;
+}
+
+/// Move a column from left to right
+@mixin grid--push($cfg: ()) {
+    @include grid--move-col(map-merge($cfg, (direction: 'left')));
+}
+
+/// Move a column from right to left
+@mixin grid--pull($cfg: ()) {
+    @include grid--move-col(map-merge($cfg, (direction: 'right')));
+}
+
 /// Define the maximum size of a grid by adding a `max-width` to the container
 /// @param {string} $cfg.root - A root module name (BEM) including a dot
 /// @param {string} $cfg.mq - A media expression that is parseable by `include-media`
@@ -203,40 +235,6 @@
         @include grid--fix-ie-flex-basis {
             #{$cfg-fallback-prop}: $percentage;
         }
-    }
-}
-
-
-@mixin grid--push($cfg: ()) {
-    $defaults: (
-        ratio: null,
-        mq: null,
-    );
-    $cfg: map-merge($defaults, $cfg);
-    $cfg-ratio: map-get($cfg, 'ratio');
-    $cfg-mq: map-get($cfg, 'mq');
-
-    $percentage: (100% * $cfg-ratio);
-
-    @include mq($cfg-mq) {
-        margin-left: $percentage;
-    }
-}
-
-
-@mixin grid--pull($cfg: ()) {
-    $defaults: (
-        ratio: null,
-        mq: null,
-    );
-    $cfg: map-merge($defaults, $cfg);
-    $cfg-ratio: map-get($cfg, 'ratio');
-    $cfg-mq: map-get($cfg, 'mq');
-
-    $percentage: (100% * $cfg-ratio);
-
-    @include mq($cfg-mq) {
-        margin-right: $percentage;
     }
 }
 
