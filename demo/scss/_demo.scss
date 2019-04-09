@@ -59,5 +59,26 @@ $demo-sections: (
                 }
             }
         }
+
+        &.demo__col-push {
+            @include grid--push((ratio: 3 / 12));
+
+            > .demo__block.demo__block {
+                &::after {
+                    content: 'push 3/12';
+                }
+            }
+        }
+
+        &.demo__col-pull {
+            margin-left: auto;
+            @include grid--pull((ratio: 3 / 12));
+
+            > .demo__block.demo__block {
+                &::after {
+                    content: 'pull 3/12';
+                }
+            }
+        }
     }
 }
