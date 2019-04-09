@@ -2,7 +2,7 @@
 @import '../vendor/@dreipol/scss-utils/functions/list-expand-directions';
 
 
-/// Returns the current BEM root by separateing the rightmost part and stripping it from any element or modifier
+/// Return the current BEM root by separating the rightmost part and stripping it from any element or modifier
 /// @return {string} - The current BEM root
 ///
 @function grid--bem-root() {
@@ -18,7 +18,7 @@
     @return $root-selector;
 }
 
-/// Converts a BEM root selector and a list of modules into a selector list.
+/// Convert a BEM root selector and a list of modules into a selector list.
 /// @param {string} $selector - A root module name (BEM) including a dot.
 /// @param {string} $item-modules - One or multiple BEM submodule names without dashes.
 /// @return {string} - A stringified list of bem modules
@@ -40,7 +40,7 @@
     @return $item-modules-list;
 }
 
-/// Expands a given attribute into a 4-value gutter configuration
+/// Expand a given attribute into a 4-value gutter configuration
 /// @param {number|List} $type - The property type that is being written. Example: 'padding'
 ///
 @function grid--configurate-gutter($gutter) {
@@ -51,7 +51,7 @@
     }
 }
 
-/// Writes the desired grid-gutter values.
+/// Write the desired grid-gutter values.
 /// @param {string} $type - The property type that is being written. Example: 'padding'
 /// @param {List} $gutter-list - A list of gutter sizes with a length of 4.
 /// @param {number} $modifier - A modifier to the gutter size that is being written.
