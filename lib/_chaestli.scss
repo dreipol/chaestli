@@ -89,7 +89,9 @@
 
     $percentage: (100% * $cfg-ratio);
 
-    margin-#{$cfg-direction}: $percentage;
+    @include mq($cfg-mq) {
+        margin-#{$cfg-direction}: $percentage;
+    }
 }
 
 /// Move a column from left to right
