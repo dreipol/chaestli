@@ -44,18 +44,18 @@
   },
   "homepage": "https://github.com/dreipol/chaestli#readme",
   "dependencies": {
-    "@dreipol/scss-mq": "^0.1.6",
-    "@dreipol/scss-utils": "^2.0.0"
+    "@dreipol/scss-mq": "^1.0.0",
+    "@dreipol/scss-utils": "^3.0.1"
   },
   "devDependencies": {
-    "@dreipol/stylelint-config": "^4.0.0",
-    "@dreipol/stylelint-config-bem-pattern": "^1.0.0",
-    "@dreipol/stylelint-config-order": "^1.0.0",
-    "@dreipol/stylelint-config-scss": "^1.0.0",
-    "node-sass": "4.9.3",
-    "stylelint": "^9.10.1",
-    "stylelint-order": "^1.0.0",
-    "stylelint-scss": "^3.3.1",
-    "stylelint-selector-bem-pattern": "^2.0.0"
+    "@dreipol/stylelint-config": "^5.0.0",
+    "@dreipol/stylelint-config-bem-pattern": "^2.0.1",
+    "@dreipol/stylelint-config-order": "^3.0.0",
+    "@dreipol/stylelint-config-scss": "^2.0.1",
+    "node-sass": "4.13.1",
+    "stylelint": "^13.0.0",
+    "stylelint-order": "^4.0.0",
+    "stylelint-scss": "^3.14.2",
+    "stylelint-selector-bem-pattern": "^2.1.0"
   }
 }
