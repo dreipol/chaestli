@@ -1,5 +1,6 @@
 @use '../vendor/@dreipol/scss-utils/functions/str-split' as *;
 @use '../vendor/@dreipol/scss-utils/functions/list-expand-directions' as *;
+@use './chaestli__vars' as *;
 
 
 /// Return the current BEM root by separating the rightmost part and stripping it from any element or modifier
@@ -21,12 +22,10 @@
 /// Convert a BEM root selector and a list of modules into a selector list.
 /// @param {string} $selector - A root module name (BEM) including a dot.
 /// @param {string} $item-modules - One or multiple BEM submodule names without dashes.
-/// @return {string} - A stringified list of bem modules
+/// @return {string} - A stringified list of bem modules '.form--label, .form--input'
 /// @example scss - Basic usage: input
 ///     $module-list: _col-name-list('.form', 'label', 'input');
 ///     #{$module-list} { display: block; }
-/// @output css - Basic usage: output
-///     .form--label, .form--input { display: block; }
 ///
 @function col-name-list($selector, $item-modules...) {
     $item-modules-list: '';

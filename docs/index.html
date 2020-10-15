@@ -1,0 +1,262 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Chaestli - v2.0.1</title><link rel="stylesheet" href="assets/css/main.css"><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="Chaestli - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>A scss grid framework made in Switzerland and brought to you by dreipol</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title"><a href="https://github.com/dreipol/chaestli#readme">Chaestli - v2.0.1</a></h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="undefined"><a href="#undefined">General</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-mixin"><a href="#undefined-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--root" data-type="mixin"><a href="#undefined-mixin-grid--root">grid--root</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--move-col" data-type="mixin"><a href="#undefined-mixin-grid--move-col">grid--move-col</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--push" data-type="mixin"><a href="#undefined-mixin-grid--push">grid--push</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--pull" data-type="mixin"><a href="#undefined-mixin-grid--pull">grid--pull</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--constrain" data-type="mixin"><a href="#undefined-mixin-grid--constrain">grid--constrain</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--space" data-type="mixin"><a href="#undefined-mixin-grid--space">grid--space</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--span" data-type="mixin"><a href="#undefined-mixin-grid--span">grid--span</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--col" data-type="mixin"><a href="#undefined-mixin-grid--col">grid--col</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--debugger" data-type="mixin"><a href="#undefined-mixin-grid--debugger">grid--debugger</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--write-gutter" data-type="mixin"><a href="#undefined-mixin-grid--write-gutter">grid--write-gutter</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-function"><a href="#undefined-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--bem-root" data-type="function"><a href="#undefined-function-grid--bem-root">grid--bem-root</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--col-name-list" data-type="function"><a href="#undefined-function-grid--col-name-list">grid--col-name-list</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="grid--configurate-gutter" data-type="function"><a href="#undefined-function-grid--configurate-gutter">grid--configurate-gutter</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-variable"><a href="#undefined-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="bem-element-separator" data-type="variable"><a href="#undefined-variable-bem-element-separator">bem-element-separator</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="undefined"><div class="container">General</div></h1><section class="main__sub-section" id="undefined-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="undefined-mixin-grid--root"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--root">grid--root</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--root($cfg.root, $cfg.mq, $cfg.container, $cfg.row, $cfg.cols, $cfg.container-size) { 
+    // Merge default values with config
+    $defaults: (
+        root: grid--bem-root(),
+        mq: null,
+        container: &#39;container&#39;,
+        row: &#39;row&#39;,
+        cols: (&#39;col&#39;),
+    );
+    $cfg: map-merge($defaults, $cfg);
+
+    // Write config values into variables for code readability
+    $cfg-root: map-get($cfg, &#39;root&#39;);
+    $cfg-mq: map-get($cfg, &#39;mq&#39;);
+    $cfg-container: map-get($cfg, &#39;container&#39;);
+    $cfg-row: map-get($cfg, &#39;row&#39;);
+    $cfg-cols: map-get($cfg, &#39;cols&#39;);
+
+    // Calculate additionally needed values
+    $col-names: grid--col-name-list($cfg-root, $cfg-cols...);
+
+    @include mq($cfg-mq) {
+        #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
+            @include grid--define-container;
+        }
+
+        #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
+            @include grid--define-row;
+        }
+
+        #{$col-names} {
+            @include grid--define-col;
+        }
+    }
+ }" data-collapsed="@mixin grid--root($cfg.root, $cfg.mq, $cfg.container, $cfg.row, $cfg.cols, $cfg.container-size) { ... }"><code>@mixin grid--root($cfg.root, $cfg.mq, $cfg.container, $cfg.row, $cfg.cols, $cfg.container-size) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Add basic grid styling to elements with a certain naming convention adapted from bootstrap</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.root</code></th><td data-label="desc"><p>A root module name (BEM) including a dot</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.mq</code></th><td data-label="desc"><p>A media expression that is parseable by <code>include-media</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.container</code></th><td data-label="desc"><p>BEM element describing a container</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.row</code></th><td data-label="desc"><p>BEM element describing a row</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.cols</code></th><td data-label="desc"><p>One or multiple BEM element describing a col</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.container-size</code></th><td data-label="desc"><p>The grid-container&#39;s size</p></td><td data-label="type"><code>String</code> or <code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--bem-root"><code>grid--bem-root</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--col-name-list"><code>grid--col-name-list</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-bem-element-separator"><code>bem-element-separator</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-bem-element-separator"><code>bem-element-separator</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--move-col"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--move-col">grid--move-col</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--move-col($cfg.direction, $cfg.ratio, $cfg.mq) { 
+    $defaults: (
+        direction: null,
+        ratio: null,
+        mq: null,
+    );
+
+    $cfg: map-merge($defaults, $cfg);
+    $cfg-direction: map-get($cfg, &#39;direction&#39;);
+    $cfg-ratio: map-get($cfg, &#39;ratio&#39;);
+    $cfg-mq: map-get($cfg, &#39;mq&#39;);
+
+    $percentage: (100% * $cfg-ratio);
+
+    @include mq($cfg-mq) {
+        margin-#{$cfg-direction}: $percentage;
+    }
+ }" data-collapsed="@mixin grid--move-col($cfg.direction, $cfg.ratio, $cfg.mq) { ... }"><code>@mixin grid--move-col($cfg.direction, $cfg.ratio, $cfg.mq) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Move a column in any direction using its css margin property</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.direction</code></th><td data-label="desc"><p>Either one of these values: <code>left</code> <code>right</code> <code>top</code> <code>bottom</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.ratio</code></th><td data-label="desc"><p>A unitless ratio value (0 &lt; x &lt;= 1)</p></td><td data-label="type"><code>Unitless</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.mq</code></th><td data-label="desc"><p>A media expression that is parseable by <code>include-media</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--push"><code>grid--push</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--pull"><code>grid--pull</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--push"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--push">grid--push</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--push() { 
+    @include grid--move-col(map-merge($cfg, (direction: &#39;left&#39;)));
+ }" data-collapsed="@mixin grid--push() { ... }"><code>@mixin grid--push() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Move a column from left to right</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--move-col"><code>grid--move-col</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--pull"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--pull">grid--pull</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--pull() { 
+    @include grid--move-col(map-merge($cfg, (direction: &#39;right&#39;)));
+ }" data-collapsed="@mixin grid--pull() { ... }"><code>@mixin grid--pull() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Move a column from right to left</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--move-col"><code>grid--move-col</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--constrain"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--constrain">grid--constrain</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--constrain($cfg.root, $cfg.mq, $cfg.container, $cfg.container-size) { 
+    // Merge default values with config
+    $defaults: (
+        root: grid--bem-root(),
+        mq: null,
+        container: &#39;container&#39;,
+        container-size: none,
+        size-prop: &#39;max-width&#39;,
+    );
+    $cfg: map-merge($defaults, $cfg);
+
+    // Write config values into variables for code readability
+    $cfg-root: map-get($cfg, &#39;root&#39;);
+    $cfg-mq: map-get($cfg, &#39;mq&#39;);
+    $cfg-container: map-get($cfg, &#39;container&#39;);
+    $cfg-container-size: map-get($cfg, &#39;container-size&#39;);
+    $cfg-size-prop: map-get($cfg, &#39;size-prop&#39;);
+
+    @include mq($cfg-mq) {
+        #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
+            #{$cfg-size-prop}: $cfg-container-size;
+        }
+    }
+ }" data-collapsed="@mixin grid--constrain($cfg.root, $cfg.mq, $cfg.container, $cfg.container-size) { ... }"><code>@mixin grid--constrain($cfg.root, $cfg.mq, $cfg.container, $cfg.container-size) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Define the maximum size of a grid by adding a <code>max-width</code> to the container</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.root</code></th><td data-label="desc"><p>A root module name (BEM) including a dot</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.mq</code></th><td data-label="desc"><p>A media expression that is parseable by <code>include-media</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.container</code></th><td data-label="desc"><p>BEM element describing a container</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.container-size</code></th><td data-label="desc"><p>The grid-container&#39;s size</p></td><td data-label="type"><code>String</code> or <code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--bem-root"><code>grid--bem-root</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-bem-element-separator"><code>bem-element-separator</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--space"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--space">grid--space</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--space($cfg.root, $cfg.mq, $cfg.container, $cfg.row, $cfg.cols, $cfg.gutter, $cfg.edge) { 
+    // Merge default values with config
+    $defaults: (
+        root: grid--bem-root(),
+        container: &#39;container&#39;,
+        row: &#39;row&#39;,
+        cols: (&#39;col&#39;),
+        gutter: 0,
+        mq: null,
+        debug: null,
+        edge: null,
+    );
+    $cfg: map-merge($defaults, $cfg);
+
+    // Write config values into variables for code readability
+    $cfg-root: map-get($cfg, &#39;root&#39;);
+    $cfg-mq: map-get($cfg, &#39;mq&#39;);
+    $cfg-container: map-get($cfg, &#39;container&#39;);
+    $cfg-row: map-get($cfg, &#39;row&#39;);
+    $cfg-cols: map-get($cfg, &#39;cols&#39;);
+    $cfg-gutter: map-get($cfg, &#39;gutter&#39;);
+    $cfg-edge: map-get($cfg, &#39;edge&#39;);
+    $cfg-debug: map-get($cfg, &#39;debug&#39;);
+
+    // Calculate additionally needed values
+    $col-names: grid--col-name-list($cfg-root, $cfg-cols...);
+    $gutters: grid--configurate-gutter($cfg-gutter);
+    $edges: grid--configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
+
+    @include mq($cfg-mq) {
+        #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
+            @include grid--write-gutter(&#39;padding&#39;, $edges);
+
+            #{$cfg-root}#{$bem-element-separator}#{$cfg-container}:not(.u-iknowwhatimdoing) {
+                // NOTE: Nested containers are not allowed, please nest rows/cols instead!
+                visibility: hidden !important; // stylelint-disable-line declaration-no-important
+
+                &amp;::before {
+                    visibility: visible;
+                    content: &#39;Nested `grid--container` detected!&#39;;
+                    font-size: 20px;
+                    line-height: 1.2;
+                    color: red; // stylelint-disable-line color-named
+                }
+            }
+        }
+
+        #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
+            @include grid--write-gutter(&#39;margin&#39;, $gutters, -0.5);
+
+            // enable the grid debugging
+            @if $cfg-debug {
+                @include grid--debugger((
+                    edge: $cfg-edge,
+                    gutter: $cfg-gutter
+                ), $cfg-debug);
+            }
+        }
+
+        #{$col-names} {
+            @include grid--write-gutter(&#39;padding&#39;, $gutters, 0.5);
+        }
+    }
+ }" data-collapsed="@mixin grid--space($cfg.root, $cfg.mq, $cfg.container, $cfg.row, $cfg.cols, $cfg.gutter, $cfg.edge) { ... }"><code>@mixin grid--space($cfg.root, $cfg.mq, $cfg.container, $cfg.row, $cfg.cols, $cfg.gutter, $cfg.edge) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Scaffold spacing in between cols and between cols and container</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.root</code></th><td data-label="desc"><p>A root module name (BEM) including a dot</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.mq</code></th><td data-label="desc"><p>A media expression that is parseable by <code>include-media</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.container</code></th><td data-label="desc"><p>BEM element describing a container</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.row</code></th><td data-label="desc"><p>BEM element describing a row</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.cols</code></th><td data-label="desc"><p>One or multiple BEM element describing a col</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.gutter</code></th><td data-label="desc"><p>The desired inner gutter size in any spacial unit</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.edge</code></th><td data-label="desc"><p>The desired edge clearance in any spacial unit</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--write-gutter"><code>grid--write-gutter</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--write-gutter"><code>grid--write-gutter</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--debugger"><code>grid--debugger</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--write-gutter"><code>grid--write-gutter</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--bem-root"><code>grid--bem-root</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--col-name-list"><code>grid--col-name-list</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--configurate-gutter"><code>grid--configurate-gutter</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--configurate-gutter"><code>grid--configurate-gutter</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-bem-element-separator"><code>bem-element-separator</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-bem-element-separator"><code>bem-element-separator</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-bem-element-separator"><code>bem-element-separator</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--span"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--span">grid--span</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--span($cfg.ratio, $cfg.mq, $cfg.fallback) { 
+    // Merge default values with config
+    $defaults: (
+        ratio: null,
+        mq: null,
+        fallback-prop: &#39;width&#39;,
+    );
+    $cfg: map-merge($defaults, $cfg);
+
+    // Write config values into variables for code readability
+    $cfg-ratio: map-get($cfg, &#39;ratio&#39;);
+    $cfg-mq: map-get($cfg, &#39;mq&#39;);
+    $cfg-fallback-prop: map-get($cfg, &#39;fallback-prop&#39;);
+
+    // Calculate additionally needed values
+    $percentage: (100% * $cfg-ratio);
+
+    @include mq($cfg-mq) {
+        flex: 0 0 $percentage;
+    }
+ }" data-collapsed="@mixin grid--span($cfg.ratio, $cfg.mq, $cfg.fallback) { ... }"><code>@mixin grid--span($cfg.ratio, $cfg.mq, $cfg.fallback) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Define the col&#39;s size in flex notation</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.ratio</code></th><td data-label="desc"><p>A unitless ratio value (0 &lt; x &lt;= 1)</p></td><td data-label="type"><code>Unitless</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.mq</code></th><td data-label="desc"><p>A media expression that is parseable by <code>include-media</code></p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.fallback</code></th><td data-label="desc"><p>A property name that serves as fallback in IE10 and IE11</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--col"><code>grid--col</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--col"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--col">grid--col</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--col() { 
+    @include grid--define-col;
+    @include grid--span($cfg);
+ }" data-collapsed="@mixin grid--col() { ... }"><code>@mixin grid--col() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Standalone version of <code>grid--span</code> with the same config</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--span"><code>grid--span</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--debugger"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--debugger">grid--debugger</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--debugger($grid-cfg.gutter, $grid-cfg.edge, $cfg.columns, $cfg.column-color, $cfg.gutter-color, $cfg.edge-color) { 
+    $defaults: (
+        column-color: rgba(0, 0, 0, 0.2),
+        edge-color: rgba(0, 0, 0, 0),
+        gutter-color: rgba(0, 0, 0, 0),
+        columns: null
+    );
+
+    @if not map-get($cfg, &#39;columns&#39;) {
+        @error &#39;Please define the columns amount to debug the grid&#39;;
+    }
+
+    $cfg: map-merge($defaults, $cfg);
+
+    $cfg-gutter: map-get($grid-cfg, &#39;gutter&#39;);
+    $cfg-edge: map-get($grid-cfg, &#39;edge&#39;);
+    $cfg-columns: map-get($cfg, &#39;columns&#39;);
+    $cfg-gutter-color: map-get($cfg, &#39;gutter-color&#39;);
+    $cfg-edge-color: map-get($cfg, &#39;edge-color&#39;);
+    $cfg-column-color: map-get($cfg, &#39;column-color&#39;);
+
+    $half-gutter: $cfg-gutter / 2;
+    $gradient-start: $half-gutter;
+    $gradient-end: calc(100% - #{$half-gutter});
+
+    position: relative;
+    background: {
+        image: linear-gradient(
+            to right,
+            $cfg-gutter-color $gradient-start,
+            $cfg-column-color $gradient-start,
+            $cfg-column-color $gradient-end,
+            $cfg-gutter-color $gradient-end
+        );
+        size: 1 / $cfg-columns * 100%;
+        position: left top;
+        clip: content-box;
+        origin: content-box;
+    };
+
+    &amp;::before,
+    &amp;::after {
+        content: &#39;&#39;;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: $cfg-edge;
+        background: $cfg-edge-color;
+    }
+
+    &amp;::before {
+        right: calc(100% - #{$half-gutter});
+    }
+
+    &amp;::after {
+        left: calc(100% - #{$half-gutter});
+    }
+ }" data-collapsed="@mixin grid--debugger($grid-cfg.gutter, $grid-cfg.edge, $cfg.columns, $cfg.column-color, $cfg.gutter-color, $cfg.edge-color) { ... }"><code>@mixin grid--debugger($grid-cfg.gutter, $grid-cfg.edge, $cfg.columns, $cfg.column-color, $cfg.gutter-color, $cfg.edge-color) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Allows the grid debugging coloring the rows background showing the columns and the edges</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$grid-cfg.gutter</code></th><td data-label="desc"><p>The inner gutter size</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$grid-cfg.edge</code></th><td data-label="desc"><p>The edge clearance in any spacial unit</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.columns</code></th><td data-label="desc"><p>The amount of columns we want to debug</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.column-color</code></th><td data-label="desc"><p>The color used to debug the columns</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.gutter-color</code></th><td data-label="desc"><p>The color used to debug the gutter</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$cfg.edge-color</code></th><td data-label="desc"><p>The color to highlight the external edges</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p>Please define the columns amount to debug the grid</p></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid--write-gutter"><h3 class="item__heading"><a class="item__name" href="#mixin-grid--write-gutter">grid--write-gutter</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid--write-gutter($type, $gutter-list, $modifier) { 
+    $direction-list: (&#39;top&#39;, &#39;left&#39;, &#39;bottom&#39;, &#39;right&#39;);
+
+    @for $i from 1 through length($direction-list) {
+        $dir: nth($direction-list, $i);
+        $val: nth($gutter-list, $i);
+
+        @if ($val) {
+            #{$type}-#{$dir}: ($val * $modifier);
+        }
+    }
+ }" data-collapsed="@mixin grid--write-gutter($type, $gutter-list, $modifier) { ... }"><code>@mixin grid--write-gutter($type, $gutter-list, $modifier) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Write the desired grid-gutter values.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>The property type that is being written. Example: &#39;padding&#39;</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$gutter-list</code></th><td data-label="desc"><p>A list of gutter sizes with a length of 4.</p></td><td data-label="type"><code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$modifier</code></th><td data-label="desc"><p>A modifier to the gutter size that is being written.</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li></ul></section></section><section class="main__sub-section" id="undefined-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="undefined-function-grid--bem-root"><h3 class="item__heading"><a class="item__name" href="#function-grid--bem-root">grid--bem-root</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function grid--bem-root() { 
+    $root-selector: nth(nth(&amp;, 1), 1);
+    $root-selector: nth(str-split($root-selector, &#39;__&#39;), 1);
+    $root-selector: nth(str-split($root-selector, &#39;--&#39;), 1);
+    $root-selector: &#39;.#{nth(str-split($root-selector, &#39;.&#39;), 1)}&#39;;
+
+    @if (str-index($root-selector, &#39;.&#39;) != 1) {
+        @error &#39;Provided root selector `#{$root-selector}` is no valid class selector!&#39;;
+    }
+
+    @return $root-selector;
+ }" data-collapsed="@function grid--bem-root() { ... }"><code>@function grid--bem-root() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Return the current BEM root by separating the rightmost part and stripping it from any element or modifier</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>The current BEM root</p></div><h3 class="item__sub-heading">Throws</h3><ul class="list-unstyled"><li><p>Provided root selector <code>#{$root-selector}</code> is no valid class selector!</p></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--root"><code>grid--root</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--constrain"><code>grid--constrain</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li></ul></section><section class="main__item container item" id="undefined-function-grid--col-name-list"><h3 class="item__heading"><a class="item__name" href="#function-grid--col-name-list">grid--col-name-list</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function grid--col-name-list($selector, $item-modules) { 
+    $item-modules-list: &#39;&#39;;
+
+    @each $item-module in $item-modules {
+        $i: index($item-modules, $item-module);
+        $sep: if($i == 1, &#39;&#39;, &#39;, &#39;);
+        $item-modules-list: ($item-modules-list + $sep + &#39;#{$selector}#{$bem-element-separator}#{$item-module}&#39;);
+    }
+
+    @return $item-modules-list;
+ }" data-collapsed="@function grid--col-name-list($selector, $item-modules) { ... }"><code>@function grid--col-name-list($selector, $item-modules) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Convert a BEM root selector and a list of modules into a selector list.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$selector</code></th><td data-label="desc"><p>A root module name (BEM) including a dot.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$item-modules</code></th><td data-label="desc"><p>One or multiple BEM submodule names without dashes.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>A stringified list of bem modules &#39;.form--label, .form--input&#39;</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic usage: input</p></div><pre class="example__code language-scss"><code>$module-list: _grid--col-name-list(&#39;.form&#39;, &#39;label&#39;, &#39;input&#39;);
+#{$module-list} { display: block; }</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-bem-element-separator"><code>bem-element-separator</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--root"><code>grid--root</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li></ul></section><section class="main__item container item" id="undefined-function-grid--configurate-gutter"><h3 class="item__heading"><a class="item__name" href="#function-grid--configurate-gutter">grid--configurate-gutter</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function grid--configurate-gutter($type) { 
+    @if (type-of($gutter) == &#39;list&#39;) {
+        @return list-expand-directions($gutter);
+    } @else {
+        @return (null, $gutter, null, $gutter);
+    }
+ }" data-collapsed="@function grid--configurate-gutter($type) { ... }"><code>@function grid--configurate-gutter($type) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Expand a given attribute into a 4-value gutter configuration</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>The property type that is being written. Example: &#39;padding&#39;</p></td><td data-label="type"><code>Number</code> or <code>List</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li></ul></section></section><section class="main__sub-section" id="undefined-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="undefined-variable-bem-element-separator"><h3 class="item__heading"><a class="item__name" href="#variable-bem-element-separator">bem-element-separator</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$bem-element-separator: &#39;__&#39; !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>BEM presets</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--root"><code>grid--root</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--root"><code>grid--root</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--constrain"><code>grid--constrain</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-grid--space"><code>grid--space</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#undefined-function-grid--col-name-list"><code>grid--col-name-list</code></a></li></ul></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --> <a class="project-info__name" href="https://github.com/dreipol/chaestli#readme">Chaestli</a><!-- Version --> <span class="project-info__version">- v2.0.1</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

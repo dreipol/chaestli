@@ -1,9 +1,9 @@
-@import '../../index';
+@import '../../../index';
 
-@import './reset';
-@import './typography';
-@import './demo';
-@import './documentation';
+@import 'reset';
+@import 'typography';
+@import 'demo';
+@import 'documentation';
 
 @import 'grids/with-fixed-container-size';
 @import 'grids/with-demo-columns';
