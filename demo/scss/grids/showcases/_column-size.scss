@@ -1,21 +1,23 @@
+@use '../../../../../index' as grid;
+
 .demo.demo--column-size-showcase {
     .demo__col.demo__col--ant {
-        @include grid--span((ratio: 1/12));
+        @include grid.span((ratio: 1/12));
     }
 
     .demo__col.demo__col--gazelle {
-        @include grid--span((ratio: 1/6));
+        @include grid.span((ratio: 1/6));
     }
 
     .demo__col.demo__col--lion {
-        @include grid--span((ratio: 1/4));
+        @include grid.span((ratio: 1/4));
     }
 
     .demo__col.demo__col--rhino {
-        @include grid--span((ratio: 1/2));
+        @include grid.span((ratio: 1/2));
     }
 
     .demo__col.demo__col--elephant {
-        @include grid--span((ratio: 1/1));
+        @include grid.span((ratio: 1/1));
     }
 }

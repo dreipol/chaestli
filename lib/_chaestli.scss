@@ -4,41 +4,45 @@
 ////
 /// Dependencies and components
 ///
-@import '../vendor/@dreipol/scss-mq/index';
-@import '../vendor/@dreipol/scss-utils/mixins/at-root';
-@import './chaestli__vars';
-@import './chaestli__helpers';
-@import './chaestli__basics';
+@use '../vendor/@dreipol/scss-utils/mixins/at-root' as *;
+@use '../vendor/@dreipol/scss-utils/mixins/at-root' as *;
+@use './chaestli__vars' as *;
+@use './chaestli__helpers' as *;
 
+/// Create the grid container where the grid rows and cols will be used to layout the content
+@mixin define-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
 
-/// Fix buggy support for percentage values of `flex-basis` in IE10 and IE11.
-/// @link https://github.com/philipwalton/flexbugs#7-flex-basis-doesnt-account-for-box-sizingborder-box
-///
-@mixin grid--fix-ie-flex-basis() {
-    @include dp-at-root(html, '.ie11') {
-        flex-basis: auto;
-        @content;
-    }
-
-    @include dp-at-root(html, '.ie10') {
-        flex-basis: auto;
-        @content;
-    }
+    margin: auto;
 }
+
+/// Create a grid row
+@mixin define-row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/// Create a grid column
+@mixin define-col {
+    position: relative;
+    min-height: 1px;
+    max-width: 100%;
+}
+
 
 /// Add basic grid styling to elements with a certain naming convention adapted from bootstrap
 /// @param {string} $cfg.root - A root module name (BEM) including a dot
-/// @param {string} $cfg.mq - A media expression that is parseable by `include-media`
 /// @param {string} $cfg.container - BEM element describing a container
 /// @param {string} $cfg.row - BEM element describing a row
 /// @param {List} $cfg.cols - One or multiple BEM element describing a col
 /// @param {string|number} $cfg.container-size - The grid-container's size
 ///
-@mixin grid--root($cfg: ()) {
+@mixin root($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: grid--bem-root(),
-        mq: null,
+        root: bem-root(),
         container: 'container',
         row: 'row',
         cols: ('col'),
@@ -47,74 +51,64 @@
 
     // Write config values into variables for code readability
     $cfg-root: map-get($cfg, 'root');
-    $cfg-mq: map-get($cfg, 'mq');
     $cfg-container: map-get($cfg, 'container');
     $cfg-row: map-get($cfg, 'row');
     $cfg-cols: map-get($cfg, 'cols');
 
     // Calculate additionally needed values
-    $col-names: grid--col-name-list($cfg-root, $cfg-cols...);
+    $col-names: col-name-list($cfg-root, $cfg-cols...);
 
-    @include mq($cfg-mq) {
-        #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-            @include grid--define-container;
-        }
+    #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
+        @include define-container;
+    }
 
-        #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
-            @include grid--define-row;
-        }
+    #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
+        @include define-row;
+    }
 
-        #{$col-names} {
-            @include grid--define-col;
-        }
+    #{$col-names} {
+        @include define-col;
     }
 }
 
 /// Move a column in any direction using its css margin property
 /// @param {string} $cfg.direction - Either one of these values: `left` `right` `top` `bottom`
 /// @param {unitless} $cfg.ratio - A unitless ratio value (0 < x <= 1)
-/// @param {string} $cfg.mq - A media expression that is parseable by `include-media`
 ///
-@mixin grid--move-col($cfg) {
+@mixin move-col($cfg) {
     $defaults: (
         direction: null,
         ratio: null,
-        mq: null,
     );
 
     $cfg: map-merge($defaults, $cfg);
     $cfg-direction: map-get($cfg, 'direction');
     $cfg-ratio: map-get($cfg, 'ratio');
-    $cfg-mq: map-get($cfg, 'mq');
 
     $percentage: (100% * $cfg-ratio);
 
-    @include mq($cfg-mq) {
-        margin-#{$cfg-direction}: $percentage;
-    }
+    margin-#{$cfg-direction}: $percentage;
 }
 
 /// Move a column from left to right
-@mixin grid--push($cfg: ()) {
-    @include grid--move-col(map-merge($cfg, (direction: 'left')));
+@mixin push($cfg: ()) {
+    @include move-col(map-merge($cfg, (direction: 'left')));
 }
 
 /// Move a column from right to left
-@mixin grid--pull($cfg: ()) {
-    @include grid--move-col(map-merge($cfg, (direction: 'right')));
+@mixin pull($cfg: ()) {
+    @include move-col(map-merge($cfg, (direction: 'right')));
 }
 
 /// Define the maximum size of a grid by adding a `max-width` to the container
 /// @param {string} $cfg.root - A root module name (BEM) including a dot
-/// @param {string} $cfg.mq - A media expression that is parseable by `include-media`
 /// @param {string} $cfg.container - BEM element describing a container
 /// @param {string|number} $cfg.container-size - The grid-container's size
 ///
-@mixin grid--constrain($cfg: ()) {
+@mixin constrain($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: grid--bem-root(),
-        mq: null,
+        root: bem-root(),
         container: 'container',
         container-size: none,
         size-prop: 'max-width',
@@ -123,36 +117,31 @@
 
     // Write config values into variables for code readability
     $cfg-root: map-get($cfg, 'root');
-    $cfg-mq: map-get($cfg, 'mq');
     $cfg-container: map-get($cfg, 'container');
     $cfg-container-size: map-get($cfg, 'container-size');
     $cfg-size-prop: map-get($cfg, 'size-prop');
 
-    @include mq($cfg-mq) {
-        #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-            #{$cfg-size-prop}: $cfg-container-size;
-        }
+    #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
+        #{$cfg-size-prop}: $cfg-container-size;
     }
 }
 
 /// Scaffold spacing in between cols and between cols and container
 /// @param {string} $cfg.root - A root module name (BEM) including a dot
-/// @param {string} $cfg.mq - A media expression that is parseable by `include-media`
 /// @param {string} $cfg.container - BEM element describing a container
 /// @param {string} $cfg.row - BEM element describing a row
 /// @param {List} $cfg.cols - One or multiple BEM element describing a col
 /// @param {number} $cfg.gutter - The desired inner gutter size in any spacial unit
 /// @param {number} $cfg.edge - The desired edge clearance in any spacial unit
 ///
-@mixin grid--space($cfg: ()) {
+@mixin space($cfg: ()) {
     // Merge default values with config
     $defaults: (
-        root: grid--bem-root(),
+        root: bem-root(),
         container: 'container',
         row: 'row',
         cols: ('col'),
         gutter: 0,
-        mq: null,
         debug: null,
         edge: null,
     );
@@ -160,7 +149,6 @@
 
     // Write config values into variables for code readability
     $cfg-root: map-get($cfg, 'root');
-    $cfg-mq: map-get($cfg, 'mq');
     $cfg-container: map-get($cfg, 'container');
     $cfg-row: map-get($cfg, 'row');
     $cfg-cols: map-get($cfg, 'cols');
@@ -169,82 +157,69 @@
     $cfg-debug: map-get($cfg, 'debug');
 
     // Calculate additionally needed values
-    $col-names: grid--col-name-list($cfg-root, $cfg-cols...);
-    $gutters: grid--configurate-gutter($cfg-gutter);
-    $edges: grid--configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
+    $col-names: col-name-list($cfg-root, $cfg-cols...);
+    $gutters: configurate-gutter($cfg-gutter);
+    $edges: configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
 
-    @include mq($cfg-mq) {
-        #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-            @include grid--write-gutter('padding', $edges);
 
-            #{$cfg-root}#{$bem-element-separator}#{$cfg-container}:not(.u-iknowwhatimdoing) {
-                // NOTE: Nested containers are not allowed, please nest rows/cols instead!
-                visibility: hidden !important; // stylelint-disable-line declaration-no-important
+    #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
+        @include write-gutter('padding', $edges);
 
-                &::before {
-                    visibility: visible;
-                    content: 'Nested `grid--container` detected!';
-                    font-size: 20px;
-                    line-height: 1.2;
-                    color: red; // stylelint-disable-line color-named
-                }
+        #{$cfg-root}#{$bem-element-separator}#{$cfg-container}:not(.u-iknowwhatimdoing) {
+            // NOTE: Nested containers are not allowed, please nest rows/cols instead!
+            visibility: hidden !important; // stylelint-disable-line declaration-no-important
+
+            &::before {
+                visibility: visible;
+                content: 'Nested `container` detected!';
+                font-size: 20px;
+                line-height: 1.2;
+                color: red; // stylelint-disable-line color-named
             }
         }
+    }
 
-        #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
-            @include grid--write-gutter('margin', $gutters, -0.5);
+    #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
+        @include write-gutter('margin', $gutters, -0.5);
 
-            // enable the grid debugging
-            @if $cfg-debug {
-                @include grid--debugger((
-                    edge: $cfg-edge,
-                    gutter: $cfg-gutter
-                ), $cfg-debug);
-            }
+        // enable the grid debugging
+        @if $cfg-debug {
+            @include debugger((
+                edge: $cfg-edge,
+                gutter: $cfg-gutter
+            ), $cfg-debug);
         }
+    }
 
-        #{$col-names} {
-            @include grid--write-gutter('padding', $gutters, 0.5);
-        }
+    #{$col-names} {
+        @include write-gutter('padding', $gutters, 0.5);
     }
 }
 
 /// Define the col's size in flex notation
 /// @param {unitless} $cfg.ratio - A unitless ratio value (0 < x <= 1)
-/// @param {string} $cfg.mq - A media expression that is parseable by `include-media`
-/// @param {string} $cfg.fallback - A property name that serves as fallback in IE10 and IE11
 ///
-@mixin grid--span($cfg: ()) {
+@mixin span($cfg: ()) {
     // Merge default values with config
     $defaults: (
         ratio: null,
-        mq: null,
-        fallback-prop: 'width',
     );
     $cfg: map-merge($defaults, $cfg);
 
     // Write config values into variables for code readability
     $cfg-ratio: map-get($cfg, 'ratio');
-    $cfg-mq: map-get($cfg, 'mq');
-    $cfg-fallback-prop: map-get($cfg, 'fallback-prop');
 
     // Calculate additionally needed values
     $percentage: (100% * $cfg-ratio);
 
-    @include mq($cfg-mq) {
-        flex: 0 0 $percentage;
-
-        @include grid--fix-ie-flex-basis {
-            #{$cfg-fallback-prop}: $percentage;
-        }
-    }
+    flex: 0 0 $percentage;
 }
 
-/// Standalone version of `grid--span` with the same config
+/// Standalone version of `span` with the same config
 ///
-@mixin grid--col($cfg: ()) {
-    @include grid--define-col;
-    @include grid--span($cfg);
+@mixin col($cfg: ()) {
+    @include define-col;
+    @include span($cfg);
 }
 
 /// Allows the grid debugging coloring the rows background showing the columns and the edges
@@ -255,7 +230,7 @@
 /// @param {number} $cfg.gutter-color - The color used to debug the gutter
 /// @param {number} $cfg.edge-color - The color to highlight the external edges
 ///
-@mixin grid--debugger(
+@mixin debugger(
     $grid-cfg,
     $cfg
 ) {

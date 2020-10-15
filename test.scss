@@ -1,19 +1,19 @@
-@import './index';
+@use './index' as grid;
 
 body {
-    @include grid--root;
-    @include grid--constrain;
-    @include grid--space((mq: 'xxl', gutter: 24px, edge: 28px, debug:(columns: 12)));
+    @include grid.root;
+    @include grid.constrain;
+    @include grid.space((gutter: 24px, edge: 28px, debug:(columns: 12)));
 
     .container {
-        @include grid--define-container;
+        @include grid.define-container;
     }
 
     .row {
-        @include grid--define-row;
+        @include grid.define-row;
     }
 
     .col {
-        @include grid--span((ratio: 1/5, mq: '<=sm'));
+        @include grid.span((ratio: 1 / 5, mq: '<=sm'));
     }
 }

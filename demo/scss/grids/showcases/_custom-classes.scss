@@ -1,14 +1,16 @@
+@use '../../../../../index' as grid;
+
 .custom-module {
-    @include grid--root((
+    @include grid.root((
         container: 'outer-wrapper',
         row: 'inner-wrapper',
         cols: ('aside', 'main'),
     ));
-    @include grid--constrain((
+    @include grid.constrain((
         container: 'outer-wrapper',
         container-size: 320px,
     ));
-    @include grid--space((
+    @include grid.space((
         container: 'outer-wrapper',
         row: 'inner-wrapper',
         cols: ('aside', 'main'),
@@ -16,10 +18,10 @@
     ));
 
     .custom-module__main {
-        @include grid--span((ratio: 1/2));
+        @include grid.span((ratio: 1/2));
     }
 
     .custom-module__aside {
-        @include grid--span((ratio: 1/4));
+        @include grid.span((ratio: 1/4));
     }
 }

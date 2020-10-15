@@ -1,21 +1,20 @@
 {
   "name": "chaestli",
-  "version": "1.2.1",
+  "version": "2.0.1",
   "description": "A scss grid framework made in Switzerland and brought to you by dreipol",
   "main": "_index.scss",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "npm run build && npm run lint && npm run test-ruby && npm run test-node",
-    "test-ruby": "sass test.scss",
-    "test-node": "node-sass test.scss",
+    "test": "npm run build && npm run lint && npx sass test.scss",
     "lint": "stylelint _index.scss lib/**/*.scss",
     "clean": "rm -rf vendor",
-    "demo": "node-sass --output-style=compressed -o=demo demo/scss/index.scss",
+    "doc": "mv docs/demo demo && npx sassdoc lib --dest docs && mv demo docs/demo",
+    "demo": "npx sass --style=compressed docs/demo/scss/index.scss:docs/demo/index.css",
     "prebuild": "npm run clean && mkdir vendor",
     "build": "npm run prebuild && rsync -rm `pwd`/node_modules/* --include=\"*.scss\" --include=\"*/\" --exclude=\"*\" vendor",
-    "prepublish": "npm test"
+    "prepublishOnly": "npm run doc && npm test"
   },
   "repository": {
     "type": "git",
@@ -44,18 +43,19 @@
   },
   "homepage": "https://github.com/dreipol/chaestli#readme",
   "dependencies": {
-    "@dreipol/scss-mq": "^1.0.0",
-    "@dreipol/scss-utils": "^3.0.1"
+    "@dreipol/scss-utils": "^4.0.2"
   },
   "devDependencies": {
-    "@dreipol/stylelint-config": "^5.0.0",
-    "@dreipol/stylelint-config-bem-pattern": "^2.0.1",
-    "@dreipol/stylelint-config-order": "^3.0.0",
-    "@dreipol/stylelint-config-scss": "^2.0.1",
-    "node-sass": "4.13.1",
-    "stylelint": "^13.0.0",
-    "stylelint-order": "^4.0.0",
-    "stylelint-scss": "^3.14.2",
+    "@dreipol/scss-mq": "^2.0.0",
+    "@dreipol/stylelint-config": "^7.0.0",
+    "@dreipol/stylelint-config-bem-pattern": "^3.0.0",
+    "@dreipol/stylelint-config-order": "^4.0.0",
+    "@dreipol/stylelint-config-scss": "^3.0.0",
+    "node-sass": "4.14.1",
+    "sassdoc": "^2.7.3",
+    "stylelint": "^13.7.2",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.18.0",
     "stylelint-selector-bem-pattern": "^2.1.0"
   }
 }

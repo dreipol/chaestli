@@ -1,3 +1,6 @@
+@use '../../../../vendor/@dreipol/scss-mq' as *;
+@use '../../../../index' as grid;
+
 .grid.grid--with-fixed-container-size {
     $scrollbar-offset: 16px;
     $container-sizes: (
@@ -9,9 +12,11 @@
         (mq: 'xxl', container-size: ($screen-xxl-min - $scrollbar-offset - 8px)),
     );
 
-    @include grid--root();
+    @include grid.root;
 
     @each $value in $container-sizes {
-        @include grid--constrain($value);
+        @include mq(map-get($value, 'mq')) {
+            @include grid.constrain($value);
+        }
     }
 }

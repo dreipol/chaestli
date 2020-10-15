@@ -1,3 +1,6 @@
+@use '../../../../../index' as grid;
+@use '../../../../../vendor/@dreipol/scss-mq' as *;
+
 .grid.grid--spacing-response-to-media-queries-showcase {
     $spacing: (
         (mq: 'xs', gutter: 4px, edge: 2px),
@@ -9,6 +12,8 @@
     );
 
     @each $value in $spacing {
-        @include grid--space($value);
+        @include mq(map-get($value, 'mq')) {
+            @include grid.space($value);
+        }
     }
 }

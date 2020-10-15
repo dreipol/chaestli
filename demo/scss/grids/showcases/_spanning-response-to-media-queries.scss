@@ -1,3 +1,6 @@
+@use '../../../../../index' as grid;
+@use '../../../../../vendor/@dreipol/scss-mq' as *;
+
 .demo.demo--spanning-response-to-media-queries-showcase {
     $spanning: (
         (mq: 'xs', ratio: 1/1),
@@ -10,7 +13,9 @@
 
     .demo__col.demo__col--ant {
         @each $value in $spanning {
-            @include grid--span($value);
+            @include mq(map-get($value, 'mq')) {
+                @include grid.span($value);
+            }
         }
     }
 }

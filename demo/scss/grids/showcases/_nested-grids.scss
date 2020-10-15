@@ -1,6 +1,8 @@
+@use '../../../../../index' as grid;
+
 .grid.grid--nested-grids-showcase {
     display: block;
     width: 100%;
 
-    @include grid--space((gutter: (8px 8px)));
+    @include grid.space((gutter: (8px 8px)));
 }

@@ -1,3 +1,5 @@
+@use '../../../../../index' as grid;
+
 .grid.grid--plain-showcase {
-    @include grid--root();
+    @include grid.root;
 }
