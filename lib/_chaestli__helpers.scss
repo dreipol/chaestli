@@ -1,5 +1,5 @@
-@import '../vendor/@dreipol/scss-utils/functions/str-split';
-@import '../vendor/@dreipol/scss-utils/functions/list-expand-directions';
+@use '../vendor/@dreipol/scss-utils/functions/str-split' as *;
+@use '../vendor/@dreipol/scss-utils/functions/list-expand-directions' as *;
 
 
 /// Return the current BEM root by separating the rightmost part and stripping it from any element or modifier
@@ -7,9 +7,9 @@
 ///
 @function grid--bem-root() {
     $root-selector: nth(nth(&, 1), 1);
-    $root-selector: nth(dp-str-split($root-selector, '__'), 1);
-    $root-selector: nth(dp-str-split($root-selector, '--'), 1);
-    $root-selector: '.#{nth(dp-str-split($root-selector, '.'), 1)}';
+    $root-selector: nth(str-split($root-selector, '__'), 1);
+    $root-selector: nth(str-split($root-selector, '--'), 1);
+    $root-selector: '.#{nth(str-split($root-selector, '.'), 1)}';
 
     @if (str-index($root-selector, '.') != 1) {
         @error 'Provided root selector `#{$root-selector}` is no valid class selector!';
@@ -45,7 +45,7 @@
 ///
 @function grid--configurate-gutter($gutter) {
     @if (type-of($gutter) == 'list') {
-        @return dp-list-expand-directions($gutter);
+        @return list-expand-directions($gutter);
     } @else {
         @return (null, $gutter, null, $gutter);
     }

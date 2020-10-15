@@ -1,5 +1,4 @@
-@import '../vendor/@dreipol/scss-utils/mixins/at-root';
-
+@use '../vendor/@dreipol/scss-utils/mixins/at-root' as *;
 
 @mixin grid--define-container {
     display: flex;
@@ -15,7 +14,7 @@
 
     // NOTE: Fixes an image scaling issue of flex children in IE11.
     // @link https://github.com/philipwalton/flexbugs#5-column-flex-items-dont-always-preserve-intrinsic-aspect-ratios
-    @include dp-at-root(html, '.ie11') {
+    @include at-root(html, '.ie11') {
         min-height: 1px;
     }
 }

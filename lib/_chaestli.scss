@@ -4,8 +4,8 @@
 ////
 /// Dependencies and components
 ///
+@use '../vendor/@dreipol/scss-utils/mixins/at-root' as *;
 @import '../vendor/@dreipol/scss-mq/index';
-@import '../vendor/@dreipol/scss-utils/mixins/at-root';
 @import './chaestli__vars';
 @import './chaestli__helpers';
 @import './chaestli__basics';
@@ -15,12 +15,12 @@
 /// @link https://github.com/philipwalton/flexbugs#7-flex-basis-doesnt-account-for-box-sizingborder-box
 ///
 @mixin grid--fix-ie-flex-basis() {
-    @include dp-at-root(html, '.ie11') {
+    @include at-root(html, '.ie11') {
         flex-basis: auto;
         @content;
     }
 
-    @include dp-at-root(html, '.ie10') {
+    @include at-root(html, '.ie10') {
         flex-basis: auto;
         @content;
     }
