@@ -12,8 +12,7 @@
         (mq: 'xxl', container: 'block', container-size: ($screen-xxl-min - $scrollbar-offset - 8px)),
     );
 
-    @include grid.root((container: 'block'));
-    @include grid.space((container: 'block', edge: 16px));
+    @include grid.root((container: 'block', edge: 16px, num-cols: 12));
 
     @each $value in $container-sizes {
         @include mq(map-get($value, 'mq')) {

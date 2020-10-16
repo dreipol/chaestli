@@ -1,9 +1,8 @@
 @use './index' as grid;
 
 body {
-    @include grid.root;
+    @include grid.root((gutter: 24px, edge: 28px, debug:(columns: 12)));
     @include grid.constrain;
-    @include grid.space((gutter: 24px, edge: 28px, debug:(columns: 12)));
 
     .container {
         @include grid.define-container;
@@ -14,6 +13,8 @@ body {
     }
 
     .col {
-        @include grid.span((ratio: 1 / 5, mq: '<=sm'));
+        @include mq('<=sm') {
+            @include grid.col((ratio: 1 / 5));
+        }
     }
 }
