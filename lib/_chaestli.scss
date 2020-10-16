@@ -13,7 +13,7 @@
 
     // prepare variables to render
     $has-container-size: type-of($container-size) == 'number';
-    $content-width: if($has-container-size, $container-size, auto);
+    $content-width: if($has-container-size, $container-size, none);
 
     // render css props
     max-width: $content-width;
@@ -40,12 +40,16 @@
     $num-cols: map.get($definition, 'num-cols');
 
     // prepare variables to render
-    $column-size: if($gutter > 0, calc(#{100%} / #{$num-cols} - #{$gutter}), calc(#{100%} / #{$num-cols}));
+    $gaps: get-grid-gaps($gutter);
+    $column-gap: map.get($gaps, 'column');
+    $row-gap: map.get($gaps, 'row');
+    $column-size: if($column-gap > 0, calc(#{100%} / #{$num-cols} - #{$column-gap}), calc(#{100%} / #{$num-cols}));
 
     // render css props
     display: $display;
     grid-template-columns: repeat(#{$repeat-directive}, minmax($column-size, 1fr));
-    column-gap: $gutter;
+    column-gap: $column-gap;
+    row-gap: $row-gap;
 }
 
 /// Just an alias for grid-column

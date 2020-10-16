@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:list';
 
 /// Create a definitions object for containers
 /// @param {Map} $cfg - The config map
@@ -26,4 +27,22 @@
     );
 
     @return map.merge($defaults, $cfg);
+}
+
+/// Extract the grid gutters from the user options
+/// @param {list|number} $gutter - Gutter value provided by the user
+/// @return {Map} - A map containing the column and row gutters
+///
+@function get-grid-gaps($gutter) {
+    @if (type-of($gutter) == 'list') {
+        @return (
+            column: list.nth($gutter, 1),
+            row: list.nth($gutter, 2),
+        );
+    }
+
+    @return (
+        column: $gutter,
+        row: 0,
+    );
 }

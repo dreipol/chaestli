@@ -1,5 +1,7 @@
 @use '../../../../../index' as grid;
 
 .grid.grid--four-side-spacing-showcase {
-    @include grid.root((gutter: (16px 16px), edge: 0));
+    .grid__row {
+        @include grid.grid((gutter: (16px 16px), num-cols: 12));
+    }
 }

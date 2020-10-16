@@ -1,5 +1,27 @@
 @use '../../../../../index' as grid;
+@use '../../../../../vendor/@dreipol/scss-mq' as *;
 
 .grid.grid--edge-spacing-showcase {
-    @include grid.root((edge: 32px));
+    $scrollbar-offset: 16px;
+    $container-sizes: (
+        (mq: 'xs', container-size: none, edge: 32px),
+        (mq: 'sm', container-size: $screen-sm-min, edge: 16px),
+        (mq: 'md', container-size: ($screen-md-min - $scrollbar-offset - 8px), edge: 32px),
+        (mq: 'lg', container-size: ($screen-lg-min - $scrollbar-offset - 8px), edge: 32px),
+        (mq: 'xl', container-size: ($screen-xl-min - $scrollbar-offset - 4px), edge: 32px),
+        (mq: 'xxl', container-size: ($screen-xxl-min - $scrollbar-offset - 8px), edge: 32px),
+    );
+
+    @each $value in $container-sizes {
+        .grid__container {
+            @include mq(map-get($value, 'mq')) {
+                @include grid.container($value);
+            }
+        }
+    }
+
+    .grid__row {
+        @include grid.grid((num-cols: 12));
+    }
+
 }
