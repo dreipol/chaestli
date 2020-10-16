@@ -8,6 +8,7 @@
     $defaults: (
         grid-template-areas: '. container-area .',
         container-size: none,
+        display: grid,
         edge: 0,
     );
 
@@ -21,6 +22,8 @@
 @function create-grid-config($cfg) {
     $defaults: (
         gutter: 0,
+        grid-area: container-area,
+        display: grid,
         repeat-directive: 'auto-fit',
         num-cols: 1,
     );
