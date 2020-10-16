@@ -4,7 +4,7 @@
 /// Create a grid container defining the width of the main content and the edges
 /// @param {Map} $definition - A single container structure definition
 ///
-@mixin container($definition) {
+@mixin container($definition: ()) {
     $definition: create-container-config($definition);
 
     // read config variables
@@ -30,7 +30,7 @@
 /// Define a grid structure
 /// @param {Map} $definition - A single grid structure definition
 ///
-@mixin grid($definition) {
+@mixin grid($definition: ()) {
     $definition: create-grid-config($definition);
 
     // read config variables
@@ -39,9 +39,12 @@
     $repeat-directive: map.get($definition, 'repeat-directive');
     $num-cols: map.get($definition, 'num-cols');
 
+    // prepare variables to render
+    $column-size: if($gutter > 0, calc(#{100%} / #{$num-cols} - #{$gutter}), calc(#{100%} / #{$num-cols}));
+
     // render css props
     display: $display;
-    grid-template-columns: repeat(#{$repeat-directive}, calc(#{100%} / #{$num-cols} - #{$gutter}));
+    grid-template-columns: repeat(#{$repeat-directive}, $column-size);
     column-gap: $gutter;
 }
 

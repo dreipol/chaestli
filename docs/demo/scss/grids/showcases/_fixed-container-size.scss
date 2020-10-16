@@ -12,12 +12,11 @@
         (mq: 'xxl', container-size: ($screen-xxl-min - $scrollbar-offset - 8px)),
     );
 
-    @include grid.root();
 
     .grid__container {
         @each $value in $container-sizes {
             @include mq(map-get($value, 'mq')) {
-                @include grid.constrain($value);
+                @include grid.container($value);
             }
         }
     }
