@@ -1,5 +1,7 @@
 @use '../../../../../index' as grid;
 
 .grid.grid--basic-spacing-showcase {
-    @include grid.grid((gutter: 32px, edge: 0, num-cols: 12));
+    .grid__row {
+        @include grid.grid((gutter: 32px, num-cols: 12));
+    }
 }

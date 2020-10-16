@@ -1,23 +1,26 @@
 @use '../../../../../index' as grid;
 
 .demo.demo--column-size-showcase {
+    .grid__row {
+        @include grid.grid((num-cols: 12));
+    }
     .demo__col.demo__col--ant {
-        @include grid.col(1 / 12);
+        @include grid.column(span 1, span 12);
     }
 
     .demo__col.demo__col--gazelle {
-        @include grid.col(1 / 6);
+        @include grid.column(span 2, span 12);
     }
 
     .demo__col.demo__col--lion {
-        @include grid.col(1 / 4);
+        @include grid.column(span 3, span 12);
     }
 
     .demo__col.demo__col--rhino {
-        @include grid.col(1 / 2);
+        @include grid.column(span 6, span 12);
     }
 
     .demo__col.demo__col--elephant {
-        @include grid.col(1 / 1);
+        @include grid.column(span 12, span 12);
     }
 }
