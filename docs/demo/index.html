@@ -11,448 +11,449 @@
         <link href="index.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="documentation">
-        <div class="documentation__block">
-            <h1>
-                Grid demo
-            </h1>
-        </div>
-
-        <div class="demo demo--plain-showcase">
+        <div class="documentation--container">
             <div class="documentation__block">
-                <h2>
-                    Basic styles and structure
-                </h2>
-                <p>
-                    In its most basic form, chaestli needs a row and a column element to take action.
-                    <br>
-                    Containers are not necessary in any way.
-                </p>
+                <h1>
+                    Grid demo
+                </h1>
             </div>
-            <div class="demo__content">
-                <div class="grid grid--plain-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col">
-                                <div class="demo__block demo__block--basic">?</div>
+
+            <div class="demo demo--plain-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Basic styles and structure
+                    </h2>
+                    <p>
+                        In its most basic form, chaestli needs a row and a column element to take action.
+                        <br>
+                        Containers are not necessary in any way.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--plain-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col">
+                                    <div class="demo__block demo__block--basic">?</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--fixed-container-size-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Fixed container size
-                </h2>
-                <p>
-                    When you need a fixed layout, you can implement this by using a container with a constrain.
-                    <br>
-                    A container is also necessary when defining the space between the edges and the beginning of the
-                    grid.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--fixed-container-size-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col">
-                                <div class="demo__block demo__block--basic">?</div>
+            <div class="demo demo--fixed-container-size-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Fixed container size
+                    </h2>
+                    <p>
+                        When you need a fixed layout, you can implement this by using a container with a constrain.
+                        <br>
+                        A container is also necessary when defining the space between the edges and the beginning of the
+                        grid.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--fixed-container-size-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col">
+                                    <div class="demo__block demo__block--basic">?</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--column-size-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Column size
-                </h2>
-                <p>
-                    Cols can be given a size by using the `grid--span` mixin with a given ratio that is a number between 0 and up to 1.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--column-size-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--gazelle">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--elephant">
-                                <div class="demo__block"></div>
+            <div class="demo demo--column-size-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Column size
+                    </h2>
+                    <p>
+                        Cols can be given a size by using the `grid--span` mixin with a given ratio that is a number between 0 and up to 1.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--column-size-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--gazelle">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--elephant">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--with-demo-columns demo--basic-spacing-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Basic spacing
-                </h2>
-                <p>
-                    The gutter between columns can be defined by using the `grid--space` and providing a `gutter` property.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--gazelle">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--elephant">
-                                <div class="demo__block"></div>
+            <div class="demo demo--with-demo-columns demo--basic-spacing-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Basic spacing
+                    </h2>
+                    <p>
+                        The gutter between columns can be defined by using the `grid--space` and providing a `gutter` property.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--gazelle">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--elephant">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--with-demo-columns demo--basic-spacing-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Push and pull
-                </h2>
-                <p>
-                    The helpers `grid--push` and `grid--pull` can be used to give offset to specific columns
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--lion demo__col-push">
-                                <div class="demo__block"></div>
+            <div class="demo demo--with-demo-columns demo--basic-spacing-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Push and pull
+                    </h2>
+                    <p>
+                        The helpers `grid--push` and `grid--pull` can be used to give offset to specific columns
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--lion demo__col-push">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                        </div>
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--lion demo__col-pull">
-                                <div class="demo__block"></div>
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--lion demo__col-pull">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--with-demo-columns demo--four-side-spacing-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Four side spacing
-                </h2>
-                <p>
-                    The `gutter` property may contain up to four numbers that are interpreted identically to the `margin` or `padding` css property.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--four-side-spacing-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--gazelle">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--elephant">
-                                <div class="demo__block"></div>
+            <div class="demo demo--with-demo-columns demo--four-side-spacing-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Four side spacing
+                    </h2>
+                    <p>
+                        The `gutter` property may contain up to four numbers that are interpreted identically to the `margin` or `padding` css property.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--four-side-spacing-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--gazelle">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--elephant">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--with-demo-columns demo--edge-spacing-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Edge spacing
-                </h2>
-                <p>
-                    The `edge` property in the config object given to the `grid--space` mixin defines the edge spacing.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--edge-spacing-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--gazelle">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--elephant">
-                                <div class="demo__block"></div>
+            <div class="demo demo--with-demo-columns demo--edge-spacing-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Edge spacing
+                    </h2>
+                    <p>
+                        The `edge` property in the config object given to the `grid--space` mixin defines the edge spacing.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--edge-spacing-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--gazelle">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--elephant">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--with-demo-columns demo--spacing-response-to-media-queries-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Spacing (gutter and edge) change in response to media queries
-                </h2>
-                <p>
-                    The `grid--space` mixin takes an optional `mq` property that defines, when the gutter is applied.
-                    <br>
-                    This allows for complex changes in gutter and edge sizing according to the current media query.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--spacing-response-to-media-queries-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--gazelle">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--elephant">
-                                <div class="demo__block"></div>
+            <div class="demo demo--with-demo-columns demo--spacing-response-to-media-queries-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Spacing (gutter and edge) change in response to media queries
+                    </h2>
+                    <p>
+                        The `grid--space` mixin takes an optional `mq` property that defines, when the gutter is applied.
+                        <br>
+                        This allows for complex changes in gutter and edge sizing according to the current media query.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--spacing-response-to-media-queries-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--gazelle">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--elephant">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--with-demo-columns demo--spanning-response-to-media-queries-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Span changes in response to media queries
-                </h2>
-                <p>
-                    Also the `grid--span` mixin accepts an `mq` property that controls, when the sizing directive shall be active.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--with-basic-spacing grid--spanning-response-to-media-queries-showcase">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--ant">
-                                <div class="demo__block"></div>
+            <div class="demo demo--with-demo-columns demo--spanning-response-to-media-queries-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Span changes in response to media queries
+                    </h2>
+                    <p>
+                        Also the `grid--span` mixin accepts an `mq` property that controls, when the sizing directive shall be active.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--with-basic-spacing grid--spanning-response-to-media-queries-showcase">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--ant">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="demo demo--with-demo-columns demo--nested-grids-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Nested grids
-                </h2>
-                <p>
-                    It's possible to nest a grid structure within a grid column. These grids can even have their own rules such as different gutters.
-                    <br><br>
-                    <b>Important:</b> Don't try to nest container elements, as their purpose (max-width, edge spacing) only makes sense in their outermost instance.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--with-basic-spacing">
-                    <div class="grid__container">
-                        <div class="grid__row">
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--rhino">
-                                <div class="demo__block demo__block--ignore">
-                                    <div class="grid grid--nested-grids-showcase">
-                                        <div class="grid__row">
-                                            <div class="grid__col demo__col demo__col--gazelle">
-                                                <div class="demo__block"></div>
-                                            </div>
-                                            <div class="grid__col demo__col demo__col--girafe">
-                                                <div class="demo__block"></div>
-                                            </div>
-                                            <div class="grid__col demo__col demo__col--rhino">
-                                                <div class="demo__block"></div>
+            <div class="demo demo--with-demo-columns demo--nested-grids-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Nested grids
+                    </h2>
+                    <p>
+                        It's possible to nest a grid structure within a grid column. These grids can even have their own rules such as different gutters.
+                        <br><br>
+                        <b>Important:</b> Don't try to nest container elements, as their purpose (max-width, edge spacing) only makes sense in their outermost instance.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="grid grid--with-fixed-container-size grid--with-basic-spacing">
+                        <div class="grid__container">
+                            <div class="grid__row">
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--rhino">
+                                    <div class="demo__block demo__block--ignore">
+                                        <div class="grid grid--nested-grids-showcase">
+                                            <div class="grid__row">
+                                                <div class="grid__col demo__col demo__col--gazelle">
+                                                    <div class="demo__block"></div>
+                                                </div>
+                                                <div class="grid__col demo__col demo__col--girafe">
+                                                    <div class="demo__block"></div>
+                                                </div>
+                                                <div class="grid__col demo__col demo__col--rhino">
+                                                    <div class="demo__block"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="grid__col demo__col demo__col--snake">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="grid__col demo__col demo__col--snake">
-                                <div class="demo__block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo demo--custom-classes-showcase">
+                <div class="documentation__block">
+                    <h2>
+                        Custom classes
+                    </h2>
+                    <p>
+                        By leveraging `container`, `row` and `cols` properties in the config objects of the core mixins, any BEM module is able to scaffold a grid.
+                    </p>
+                </div>
+                <div class="demo__content">
+                    <div class="custom-module">
+                        <div class="custom-module__outer-wrapper">
+                            <div class="custom-module__inner-wrapper">
+                                <div class="custom-module__main demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__aside demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__aside demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__aside demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__main demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__aside demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__aside demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__aside demo__col demo__col--lion">
+                                    <div class="demo__block"></div>
+                                </div>
+                                <div class="custom-module__main demo__col demo__col--rhino">
+                                    <div class="demo__block"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="demo demo--custom-classes-showcase">
-            <div class="documentation__block">
-                <h2>
-                    Custom classes
-                </h2>
-                <p>
-                    By leveraging `container`, `row` and `cols` properties in the config objects of the core mixins, any BEM module is able to scaffold a grid.
-                </p>
-            </div>
-            <div class="demo__content">
-                <div class="custom-module">
-                    <div class="custom-module__outer-wrapper">
-                        <div class="custom-module__inner-wrapper">
-                            <div class="custom-module__main demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__aside demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__aside demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__aside demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__main demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__aside demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__aside demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__aside demo__col demo__col--lion">
-                                <div class="demo__block"></div>
-                            </div>
-                            <div class="custom-module__main demo__col demo__col--rhino">
-                                <div class="demo__block"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </body>
 </html>

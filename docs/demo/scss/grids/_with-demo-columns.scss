@@ -3,7 +3,7 @@
 .demo.demo--with-demo-columns {
     @each $value in $demo-sections {
         .demo__col.demo__col--#{map-get($value, 'id')} {
-            @include grid.col(map-get($value, 'ratio'));
+            @include grid.column(nth(map-get($value, 'ratio'), 1), nth(map-get($value, 'ratio'), 2));
         }
     }
 }

@@ -1,7 +1,7 @@
 @use '../../../../../index' as grid;
 
 .custom-module {
-    @include grid.root((
+    @include grid.grid((
         container: 'outer-wrapper',
         row: 'inner-wrapper',
         cols: ('aside', 'main'),

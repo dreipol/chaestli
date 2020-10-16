@@ -1,5 +1,5 @@
 @use '../../../../index' as grid;
 
 .grid.grid--with-basic-spacing {
-    @include grid.root((gutter: 16px, edge: 16px));
+    @include grid.grid((gutter: 16px, edge: 16px));
 }
