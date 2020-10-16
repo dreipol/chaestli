@@ -1,7 +1,7 @@
 @use '../../../../index' as grid;
 @use '../../../../vendor/@dreipol/scss-mq' as *;
 
-.grid.grid--with-basic-spacing {
+.grid.grid--with-different-columns {
     $scrollbar-offset: 16px;
     $container-sizes: (
         (mq: 'xs', edge: 16px, container-size: none),
@@ -21,6 +21,6 @@
     }
 
     .grid__row {
-        @include grid.grid((num-cols: 12, gutter: (8px 8px)));
+        @include grid.grid((num-cols: 8, gutter: (8px 8px)));
     }
 }

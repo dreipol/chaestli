@@ -4,6 +4,7 @@
     .grid__row {
         @include grid.grid((num-cols: 12));
     }
+
     .demo__col.demo__col--ant {
         @include grid.column(span 1, span 12);
     }
