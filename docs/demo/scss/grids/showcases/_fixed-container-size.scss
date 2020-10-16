@@ -14,7 +14,11 @@
 
     @include grid.root();
 
-    @each $value in $container-sizes {
-        @include grid.constrain($value);
+    .grid__container {
+        @each $value in $container-sizes {
+            @include mq(map-get($value, 'mq')) {
+                @include grid.container($value);
+            }
+        }
     }
 }
