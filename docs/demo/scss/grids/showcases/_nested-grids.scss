@@ -4,5 +4,7 @@
     display: block;
     width: 100%;
 
-    @include grid.root((gutter: (8px 8px)));
+    .grid__row {
+        @include grid.grid((num-cols: 12, gutter: (8px 8px)));
+    }
 }

@@ -7,6 +7,7 @@
 
 @import 'grids/with-fixed-container-size';
 @import 'grids/with-demo-columns';
+@import 'grids/with-different-columns';
 @import 'grids/with-basic-spacing';
 
 @import 'grids/showcases/plain';
@@ -16,12 +17,8 @@
 @import 'grids/showcases/four-side-spacing';
 @import 'grids/showcases/edge-spacing';
 @import 'grids/showcases/spacing-response-to-media-queries';
-
-/*
-
 @import 'grids/showcases/spanning-response-to-media-queries';
-@import 'grids/showcases/custom-classes';
-@import 'grids/showcases/nested-grids';*/
+@import 'grids/showcases/nested-grids';
 
 
 html {

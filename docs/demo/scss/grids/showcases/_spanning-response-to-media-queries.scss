@@ -3,18 +3,22 @@
 
 .demo.demo--spanning-response-to-media-queries-showcase {
     $spanning: (
-        (mq: 'xs', ratio: '1 / 1'),
-        (mq: 'sm', ratio: '1 / 2'),
-        (mq: 'md', ratio: '1 / 4'),
-        (mq: 'lg', ratio: '1 / 6'),
-        (mq: 'xl', ratio: '1 / 12'),
-        (mq: 'xxl', ratio: '1 / 12'),
+        (mq: 'xs', ratio: (span 12, span 12)),
+        (mq: 'sm', ratio: (span 6, span 12)),
+        (mq: 'md', ratio: (span 3, span 12)),
+        (mq: 'lg', ratio: (span 2, span 12)),
+        (mq: 'xl', ratio: (span 1, span 12)),
+        (mq: 'xxl', ratio: (span 4, span 12)),
     );
+
+    .grid__row {
+        @include grid.grid((num-cols: 12, gutter: (16px, 16px)));
+    }
 
     .demo__col.demo__col--ant {
         @each $value in $spanning {
             @include mq(map-get($value, 'mq')) {
-                @include grid.col(map-get($value, 'ratio'));
+                @include grid.column(nth(map-get($value, 'ratio'), 1), nth(map-get($value, 'ratio'), 2));
             }
         }
     }

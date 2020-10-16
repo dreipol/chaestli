@@ -3,6 +3,8 @@
 $demo-sections: (
     (id: 'ant', label: '1/12', ratio: (span 1, span 12), color: rgba(#000, 0.04)),
     (id: 'gazelle', label: '2/12', ratio: (span 2, span 12), color: rgba(#000, 0.08)),
+    (id: 'snake', label: '1/8', ratio: (span 1, span 8), color: rgba(#000, 0.06)),
+    (id: 'dog', label: '6/12', ratio: (span 4, span 8), color: rgba(#000, 0.14)),
     (id: 'lion', label: '3/12', ratio: (span 3, span 12), color: rgba(#000, 0.10)),
     (id: 'girafe', label: '4/12', ratio: (span 4, span 12), color: rgba(#000, 0.12)),
     (id: 'rhino', label: '6/12', ratio: (span 6, span 12), color: rgba(#000, 0.14)),
