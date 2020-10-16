@@ -8,29 +8,6 @@
 @use './chaestli__vars' as *;
 @use './chaestli__helpers' as *;
 
-/// Create the grid container where the grid rows and cols will be used to layout the content
-@mixin define-container {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 100%;
-
-    margin: auto;
-}
-
-/// Create a grid row
-@mixin define-row {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-/// Create a grid column
-@mixin define-col {
-    position: relative;
-    min-height: 1px;
-    max-width: 100%;
-}
-
-
 /// Add basic grid styling to elements with a certain naming convention adapted from bootstrap
 /// @param {string} $cfg.root - A root module name (BEM) including a dot
 /// @param {string} $cfg.container - BEM element describing a container
@@ -43,6 +20,11 @@
     $defaults: (
         root: bem-root(),
         container: 'container',
+        repeat-directive: 'auto-fit',
+        num-cols: 12,
+        edge: null,
+        gutter: 0,
+        debug: null,
         row: 'row',
         cols: ('col'),
     );
@@ -51,22 +33,58 @@
     // Write config values into variables for code readability
     $cfg-root: map-get($cfg, 'root');
     $cfg-container: map-get($cfg, 'container');
+    $cfg-edge: map-get($cfg, 'edge');
+    $cfg-gutter: map-get($cfg, 'gutter');
+    $cfg-repeat-directive: map-get($cfg, 'repeat-directive');
+    $cfg-num-cols: map-get($cfg, 'num-cols');
     $cfg-row: map-get($cfg, 'row');
+    $cfg-debug: map-get($cfg, 'debug');
     $cfg-cols: map-get($cfg, 'cols');
 
     // Calculate additionally needed values
+    $edges: configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
     $col-names: col-name-list($cfg-root, $cfg-cols...);
+    $column-gap: get-column-gap($cfg-gutter);
 
     #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-        @include define-container;
+        display: grid;
+        width: 100%;
+        margin: auto;
+
+        @include write-gutter('padding', $edges);
+
+        #{$cfg-root}#{$bem-element-separator}#{$cfg-container}:not(.u-iknowwhatimdoing) {
+            // NOTE: Nested containers are not allowed, please nest rows/cols instead!
+            visibility: hidden !important; // stylelint-disable-line declaration-no-important
+
+            &::before {
+                visibility: visible;
+                content: 'Nested `container` detected!';
+                font-size: 20px;
+                line-height: 1.2;
+                color: red; // stylelint-disable-line color-named
+            }
+        }
     }
 
     #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
-        @include define-row;
+        display: grid;
+        column-gap: $column-gap;
+        grid-template-columns: repeat(#{$cfg-repeat-directive}, minmax(calc(#{100% / $cfg-num-cols} - #{$column-gap}), 1fr));
+
+        // enable the grid debugging
+        @if $cfg-debug {
+            @include debugger((
+                edge: $cfg-edge,
+                gutter: $cfg-gutter
+            ), $cfg-debug);
+        }
     }
 
     #{$col-names} {
-        @include define-col;
+        position: relative;
+        min-height: 1px;
+        max-width: 100%;
     }
 }
 
@@ -125,100 +143,15 @@
     }
 }
 
-/// Scaffold spacing in between cols and between cols and container
-/// @param {string} $cfg.root - A root module name (BEM) including a dot
-/// @param {string} $cfg.container - BEM element describing a container
-/// @param {string} $cfg.row - BEM element describing a row
-/// @param {List} $cfg.cols - One or multiple BEM element describing a col
-/// @param {number} $cfg.gutter - The desired inner gutter size in any spacial unit
-/// @param {number} $cfg.edge - The desired edge clearance in any spacial unit
+/// Alias for grid-column
+/// @param {number|string} $ratio - any value compatible to the grid-column rule
 ///
-@mixin space($cfg: ()) {
-    // Merge default values with config
-    $defaults: (
-        root: bem-root(),
-        container: 'container',
-        row: 'row',
-        cols: ('col'),
-        gutter: 0,
-        debug: null,
-        edge: null,
-    );
-    $cfg: map-merge($defaults, $cfg);
-
-    // Write config values into variables for code readability
-    $cfg-root: map-get($cfg, 'root');
-    $cfg-container: map-get($cfg, 'container');
-    $cfg-row: map-get($cfg, 'row');
-    $cfg-cols: map-get($cfg, 'cols');
-    $cfg-gutter: map-get($cfg, 'gutter');
-    $cfg-edge: map-get($cfg, 'edge');
-    $cfg-debug: map-get($cfg, 'debug');
-
-    // Calculate additionally needed values
-    $col-names: col-name-list($cfg-root, $cfg-cols...);
-    $gutters: configurate-gutter($cfg-gutter);
-    $edges: configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
-
-
-    #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-        @include write-gutter('padding', $edges);
-
-        #{$cfg-root}#{$bem-element-separator}#{$cfg-container}:not(.u-iknowwhatimdoing) {
-            // NOTE: Nested containers are not allowed, please nest rows/cols instead!
-            visibility: hidden !important; // stylelint-disable-line declaration-no-important
-
-            &::before {
-                visibility: visible;
-                content: 'Nested `container` detected!';
-                font-size: 20px;
-                line-height: 1.2;
-                color: red; // stylelint-disable-line color-named
-            }
-        }
+@mixin col($ratio) {
+    @if type-of($ratio) == string {
+        grid-column: #{$ratio};
+    } @else {
+        grid-column: $ratio;
     }
-
-    #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
-        @include write-gutter('margin', $gutters, -0.5);
-
-        // enable the grid debugging
-        @if $cfg-debug {
-            @include debugger((
-                edge: $cfg-edge,
-                gutter: $cfg-gutter
-            ), $cfg-debug);
-        }
-    }
-
-    #{$col-names} {
-        @include write-gutter('padding', $gutters, 0.5);
-    }
-}
-
-/// Define the col's size in flex notation
-/// @param {unitless} $cfg.ratio - A unitless ratio value (0 < x <= 1)
-///
-@mixin span($cfg: ()) {
-    // Merge default values with config
-    $defaults: (
-        ratio: null,
-    );
-    $cfg: map-merge($defaults, $cfg);
-
-    // Write config values into variables for code readability
-    $cfg-ratio: map-get($cfg, 'ratio');
-
-    // Calculate additionally needed values
-    $percentage: (100% * $cfg-ratio);
-
-    flex: 0 0 $percentage;
-}
-
-/// Standalone version of `span` with the same config
-///
-@mixin col($cfg: ()) {
-    @include define-col;
-    @include span($cfg);
 }
 
 /// Allows the grid debugging coloring the rows background showing the columns and the edges

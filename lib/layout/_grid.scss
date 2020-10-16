@@ -1,0 +1,43 @@
+/// All available page grids
+///
+.grid {
+    // Vars
+
+
+    // Support
+
+    // Module
+    & {
+        @include layout--define-grid-root(());
+    }
+
+    // Facets
+    & {
+        // Primary layout
+        &.grid__primary {
+            // the grid variables come from the grid.json file
+            @include layout--grid-primary((
+                map-merge((mq: 'xs'), map-get($grid, 'xs')),
+                map-merge((mq: 'sm'), map-get($grid, 'sm')),
+                map-merge((mq: 'md'), map-get($grid, 'md')),
+                map-merge((mq: 'lg'), map-get($grid, 'lg')),
+                map-merge((mq: 'xl'), map-get($grid, 'xl'))
+            ));
+        }
+
+        &.grid__guttered {
+            @each $mq, $mq-grid-config in $grid {
+                $layout-config: layout--create-grid-config($mq-grid-config);
+                $gutter: map-get($layout-config, 'gutter') * 1px;
+                column-gap: $gutter;
+            }
+        }
+
+        // Inline grid
+        &.grid__inline {
+            @include layout--define-grid-root((display: inline-grid));
+        }
+    }
+
+    // States
+}

@@ -1,5 +1,5 @@
 @use '../../../../../index' as grid;
 
 .grid.grid--edge-spacing-showcase {
-    @include grid.space((edge: 32px));
+    @include grid.root((edge: 32px));
 }

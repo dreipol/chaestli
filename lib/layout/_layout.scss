@@ -1,0 +1,32 @@
+/* stylelint-disable scss/no-duplicate-dollar-variables */
+////
+/// Layout helpers
+////
+/// Dependencies and components
+///
+@import './layout__helpers';
+@import './layout__containers';
+@import './layout__grids';
+
+/// Define the container root
+///
+@mixin layout--define-container-root() {
+    display: grid;
+    grid-template-areas: '. container-area .';
+}
+
+/// Define the container content area
+///
+@mixin layout--define-container-content() {
+    grid-area: container-area;
+}
+
+/// Define the grid root
+///
+@mixin layout--define-grid-root($definition) {
+    $definition: layout--create-grid-root-config($definition);
+
+    $display: map-get($definition, 'display');
+
+    display: $display;
+}

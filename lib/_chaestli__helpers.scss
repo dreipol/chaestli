@@ -8,8 +8,8 @@
 ///
 @function bem-root() {
     $root-selector: nth(nth(&, 1), 1);
-    $root-selector: nth(str-split($root-selector, '__'), 1);
-    $root-selector: nth(str-split($root-selector, '--'), 1);
+    $root-selector: nth(str-split($root-selector, $bem-element-separator), 1);
+    $root-selector: nth(str-split($root-selector, $bem-modifier-separator), 1);
     $root-selector: '.#{nth(str-split($root-selector, '.'), 1)}';
 
     @if (str-index($root-selector, '.') != 1) {
@@ -47,6 +47,14 @@
         @return list-expand-directions($gutter);
     } @else {
         @return (null, $gutter, null, $gutter);
+    }
+}
+
+@function get-column-gap($gutter) {
+    @if (type-of($gutter) == 'list') {
+        @return nth($gutter, 1);
+    } @else {
+        @return $gutter;
     }
 }
 

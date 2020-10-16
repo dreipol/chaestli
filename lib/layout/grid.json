@@ -1,0 +1,32 @@
+{
+    "xs": {
+        "num-cols": 8,
+        "gutter": 16,
+        "edge": 16,
+        "container-size": false
+    },
+    "sm": {
+        "num-cols": 8,
+        "gutter": 16,
+        "edge": 24,
+        "container-size": false
+    },
+    "md": {
+        "num-cols": 12,
+        "gutter": 24,
+        "edge": 24,
+        "container-size": false
+    },
+    "lg": {
+        "num-cols": 12,
+        "gutter": 16,
+        "edge": 16,
+        "container-size": false
+    },
+    "xl": {
+        "num-cols": 12,
+        "gutter": 24,
+        "edge": 24,
+        "container-size": 1600
+    }
+}

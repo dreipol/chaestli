@@ -13,7 +13,7 @@
 
     @each $value in $spacing {
         @include mq(map-get($value, 'mq')) {
-            @include grid.space($value);
+            @include grid.root($value);
         }
     }
 }
