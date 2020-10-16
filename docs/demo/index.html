@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
 
         <title>Demo</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
         <link href="index.css" rel="stylesheet" type="text/css"/>
+        <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body class="documentation">
         <div class="documentation__block">
@@ -27,6 +28,29 @@
                     <br>
                     Containers are not necessary in any way.
                 </p>
+                <p>This is the simplest markup needed to create a grid</p>
+                <pre><code class="html">
+&#x3C;div class=&#x22;grid&#x22;&#x3E;
+  &#x3C;div class=&#x22;grid__container&#x22;&#x3E;
+    &#x3C;div class=&#x22;grid__row&#x22;&#x3E;
+      &#x3C;div class=&#x22;grid__col&#x22;&#x3E;
+        Column 1
+      &#x3C;/div&#x3E;
+    &#x3C;/div&#x3E;
+  &#x3C;/div&#x3E;
+&#x3C;/div&#x3E;</code></pre>
+                <p>You can then use the grid helpers to style your HTML as it follows</p>
+                <pre><code class="scss">@use 'chaestli';
+
+.grid {
+  .grid__container {
+    @include chaestli.container;
+  }
+
+  .grid__row {
+    @include chaestli.grid;
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--plain-showcase">
@@ -52,6 +76,12 @@
                     A container is also necessary when defining the space between the edges and the beginning of the
                     grid.
                 </p>
+                <p>Using the <code>container-size</code> property you can customize the size of your container</p>
+                <pre><code class="scss">.grid {
+  .grid__container {
+    @include chaestli.container((container-size: 800px));
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--fixed-container-size-showcase">
@@ -72,8 +102,18 @@
                     Column size
                 </h2>
                 <p>
-                    Cols can be given a size by using the `grid--span` mixin with a given ratio that is a number between 0 and up to 1.
+                    The column amount and size in chaestli depends the <code>num-cols</code> property you define with <code>chaestli.grid</code> mixin.
+                    Cols can be given a size by using the <code>chaestli.column</code> that is only an syntax sugar alias for the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column" target="_blank"><code>grid-column</code></a> rule.
                 </p>
+                <pre><code class="scss">.grid {
+  .grid__row {
+    @include chaestli.grid((num-cols: 12));
+  }
+
+  .grid__col {
+    @include chaestli.column(span 3, span 12); // 3 of 12 columns
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--with-fixed-container-size grid--column-size-showcase">
@@ -106,8 +146,13 @@
                     Basic spacing
                 </h2>
                 <p>
-                    The gutter between columns can be defined by using the `grid--space` and providing a `gutter` property.
+                    The gutter between columns can be defined by using the <code>gutter</code> property of the <code>chaestli.grid</code> mixin:
                 </p>
+                <pre><code class="scss">.grid {
+  .grid__row {
+    @include chaestli.grid((num-cols: 12, gutter: 16px));
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
@@ -140,8 +185,17 @@
                     Push and pull
                 </h2>
                 <p>
-                    The helpers `grid--push` and `grid--pull` can be used to give offset to specific columns
+                    Thanks to a smart use of the <code>chaestli.column</code> mixin you can position your columns in the grid without the use of dirty margin hacks
                 </p>
+                <pre><code class="scss">.grid {
+  .grid__col--push {
+    @include grid.column(4, span 3); // start from the 4th column and span the column for other 3
+  }
+
+  .grid__col--pull {
+    @include grid.column(7, span 3); // start from the 7th column and span the column for other 3
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
@@ -181,8 +235,13 @@
                     Four side spacing
                 </h2>
                 <p>
-                    The `gutter` property may contain up to four numbers that are interpreted identically to the `margin` or `padding` css property.
+                    The <code>gutter</code> property of the <code>chaestli.grid</code> mixin may contain also 2 values that can be used to define the <code>column-gap</code> and <code>row-gap</code>
                 </p>
+                <pre><code class="scss">.grid {
+  .grid__row {
+    @include chaestli.grid((num-cols: 12, gutter: (16px, 16px)));
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--with-fixed-container-size grid--four-side-spacing-showcase">
@@ -215,8 +274,13 @@
                     Edge spacing
                 </h2>
                 <p>
-                    The `edge` property in the config object given to the `grid--space` mixin defines the edge spacing.
+                    The <code>edge</code> property of the <code>chaestli.container</code> mixin defines the edge spacing.
                 </p>
+                <pre><code class="scss">.grid {
+  .grid__container {
+    @include chaestli.container((edge: 16px, container-size: 800px));
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--with-fixed-container-size grid--edge-spacing-showcase">
@@ -242,6 +306,15 @@
                 </div>
             </div>
         </div>
+        <div class="demo documentation__block">
+                <h1>
+                    Advanced example
+                </h1>
+                <p>
+                    The following examples show how you can combine <code>chaestli</code> with <a href="https://github.com/dreipol/scss-mq" target="_blank"><code>@dreipol/scss-mq</code></code></a>
+                    to make your grid responsive on different screen sizes.
+                </p>
+        </div>
 
         <div class="demo demo--with-demo-columns demo--spacing-response-to-media-queries-showcase">
             <div class="documentation__block">
@@ -249,10 +322,25 @@
                     Spacing (gutter and edge) change in response to media queries
                 </h2>
                 <p>
-                    The `grid--space` mixin takes an optional `mq` property that defines, when the gutter is applied.
-                    <br>
-                    This allows for complex changes in gutter and edge sizing according to the current media query.
+                    Thanks to the <code>mq</code> <code>@dreipol/scss-mq</code> mixin we can customize our grid on several screen resolutions
                 </p>
+                <pre><code class="scss">.grid {
+  .grid__container {
+    @include chaestli.container((edge: 16px, container-size: 1200px));
+
+    @include mq('<=sm') {
+      @include chaestli.container((edge: 8px, container-size: 800px));
+    }
+  }
+
+  .grid__row {
+    @include chaestli.row((gutter: 16px, num-cols: 12));
+
+    @include mq('<=sm') {
+      @include chaestli.row((gutter: 8px, num-cols: 12));
+    }
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--with-fixed-container-size grid--spacing-response-to-media-queries-showcase">
@@ -285,8 +373,21 @@
                     Span changes in response to media queries
                 </h2>
                 <p>
-                    Also the `grid--span` mixin accepts an `mq` property that controls, when the sizing directive shall be active.
+                    The size of your columns can also be managed using the <code>mq</code> mixin
                 </p>
+                                <pre><code class="scss">.grid {
+  .grid__col {
+    @include chaestli.column((span 3 / span 12));
+
+    @include mq('md') {
+      @include chaestli.column((span 6 / span 12));
+    }
+
+    @include mq('<=sm') {
+      @include chaestli.column((span 12 / span 12));
+    }
+  }
+}</code></pre>
             </div>
             <div class="demo__content">
                 <div class="grid grid--with-fixed-container-size grid--with-basic-spacing grid--spanning-response-to-media-queries-showcase">
@@ -341,8 +442,6 @@
                 </h2>
                 <p>
                     It's possible to nest a grid structure within a grid column. These grids can even have their own rules such as different gutters.
-                    <br><br>
-                    <b>Important:</b> Don't try to nest container elements, as their purpose (max-width, edge spacing) only makes sense in their outermost instance.
                 </p>
             </div>
             <div class="demo__content">
