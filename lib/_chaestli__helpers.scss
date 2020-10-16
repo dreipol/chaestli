@@ -1,77 +1,29 @@
-@use '../vendor/@dreipol/scss-utils/functions/str-split' as *;
-@use '../vendor/@dreipol/scss-utils/functions/list-expand-directions' as *;
-@use './chaestli__vars' as *;
+@use 'sass:map';
 
-
-/// Return the current BEM root by separating the rightmost part and stripping it from any element or modifier
-/// @return {string} - The current BEM root
+/// Create a definitions object for containers
+/// @param {Map} $cfg - The config map
+/// @return {Map} - The merge result
 ///
-@function bem-root() {
-    $root-selector: nth(nth(&, 1), 1);
-    $root-selector: nth(str-split($root-selector, $bem-element-separator), 1);
-    $root-selector: nth(str-split($root-selector, $bem-modifier-separator), 1);
-    $root-selector: '.#{nth(str-split($root-selector, '.'), 1)}';
+@function create-container-config($cfg) {
+    $defaults: (
+        grid-template-areas: '. container-area .',
+        container-size: none,
+        edge: 0,
+    );
 
-    @if (str-index($root-selector, '.') != 1) {
-        @error 'Provided root selector `#{$root-selector}` is no valid class selector!';
-    }
-
-    @return $root-selector;
+    @return map.merge($defaults, $cfg);
 }
 
-/// Convert a BEM root selector and a list of modules into a selector list.
-/// @param {string} $selector - A root module name (BEM) including a dot.
-/// @param {string} $item-modules - One or multiple BEM submodule names without dashes.
-/// @return {string} - A stringified list of bem modules '.form--label, .form--input'
-/// @example scss - Basic usage: input
-///     $module-list: _col-name-list('.form', 'label', 'input');
-///     #{$module-list} { display: block; }
+/// Create a definitions object for grids
+/// @param {Map} $cfg - The config map
+/// @return {Map} - The merge result
 ///
-@function col-name-list($selector, $item-modules...) {
-    $item-modules-list: '';
+@function create-grid-config($cfg) {
+    $defaults: (
+        gutter: 0,
+        repeat-directive: 'auto-fit',
+        num-cols: 1,
+    );
 
-    @each $item-module in $item-modules {
-        $i: index($item-modules, $item-module);
-        $sep: if($i == 1, '', ', ');
-        $item-modules-list: ($item-modules-list + $sep + '#{$selector}#{$bem-element-separator}#{$item-module}');
-    }
-
-    @return $item-modules-list;
-}
-
-/// Expand a given attribute into a 4-value gutter configuration
-/// @param {number|List} $type - The property type that is being written. Example: 'padding'
-///
-@function configurate-gutter($gutter) {
-    @if (type-of($gutter) == 'list') {
-        @return list-expand-directions($gutter);
-    } @else {
-        @return (null, $gutter, null, $gutter);
-    }
-}
-
-@function get-column-gap($gutter) {
-    @if (type-of($gutter) == 'list') {
-        @return nth($gutter, 1);
-    } @else {
-        @return $gutter;
-    }
-}
-
-/// Write the desired grid-gutter values.
-/// @param {string} $type - The property type that is being written. Example: 'padding'
-/// @param {List} $gutter-list - A list of gutter sizes with a length of 4.
-/// @param {number} $modifier - A modifier to the gutter size that is being written.
-///
-@mixin write-gutter($type, $gutter-list, $modifier: 1) {
-    $direction-list: ('top', 'left', 'bottom', 'right');
-
-    @for $i from 1 through length($direction-list) {
-        $dir: nth($direction-list, $i);
-        $val: nth($gutter-list, $i);
-
-        @if ($val) {
-            #{$type}-#{$dir}: ($val * $modifier);
-        }
-    }
+    @return map.merge($defaults, $cfg);
 }

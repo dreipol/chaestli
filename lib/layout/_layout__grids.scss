@@ -1,8 +1,0 @@
-/// Define a primary grid
-/// @param {List} $definitions - A list of grid structure definitions
-///
-@mixin layout--grid-primary($definitions) {
-    @each $definition in $definitions {
-        @include layout--grid($definition);
-    }
-}
