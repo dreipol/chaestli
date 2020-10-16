@@ -11,6 +11,7 @@
     "lint": "stylelint _index.scss lib/**/*.scss",
     "doc": "mv docs/demo demo && npx sassdoc lib --dest docs && mv demo docs/demo",
     "demo": "npx sass --style=compressed docs/demo/scss/index.scss:docs/demo/index.css",
+    "watch-demo": "npx sass --watch --style=compressed docs/demo/scss/index.scss:docs/demo/index.css",
     "prepublishOnly": "npm run doc && npm test"
   },
   "repository": {
