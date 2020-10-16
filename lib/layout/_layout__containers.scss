@@ -1,8 +1,0 @@
-/// Define a primary container
-/// @param {List} $definitions - A list of container structure definitions
-///
-@mixin layout--container-primary($definitions) {
-    @each $definition in $definitions {
-        @include layout--container($definition);
-    }
-}

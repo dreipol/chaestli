@@ -1,20 +1,15 @@
 @use './index' as grid;
 
-body {
-    @include grid.root((gutter: 24px, edge: 28px, debug:(columns: 12)));
-    @include grid.constrain;
-
-    .container {
-        @include grid.define-container;
+.grid {
+    .grid--container {
+        @include grid.container((edge: 28px));
     }
 
-    .row {
-        @include grid.define-row;
+    .grid--row {
+        @include grid.grid((gutter: 28px, num-cols: 12));
     }
 
-    .col {
-        @include mq('<=sm') {
-            @include grid.col((ratio: 1 / 5));
-        }
+    .grid--col {
+        @include grid.column(1 / 12);
     }
 }

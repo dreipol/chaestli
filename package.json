@@ -7,13 +7,10 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "npm run build && npm run lint && npx sass test.scss",
+    "test": "npm run lint && npx scss test.scss",
     "lint": "stylelint _index.scss lib/**/*.scss",
-    "clean": "rm -rf vendor",
     "doc": "mv docs/demo demo && npx sassdoc lib --dest docs && mv demo docs/demo",
-    "demo": "npx sass --style=compressed docs/demo/scss/index.scss:docs/demo/index.css",
-    "prebuild": "npm run clean && mkdir vendor",
-    "build": "npm run prebuild && rsync -rm `pwd`/node_modules/* --include=\"*.scss\" --include=\"*/\" --exclude=\"*\" vendor",
+    "demo": "npx scss --style=compressed docs/demo/scss/index.scss:docs/demo/index.css",
     "prepublishOnly": "npm run doc && npm test"
   },
   "repository": {
@@ -42,9 +39,6 @@
     "url": "https://github.com/dreipol/chaestli/issues"
   },
   "homepage": "https://github.com/dreipol/chaestli#readme",
-  "dependencies": {
-    "@dreipol/scss-utils": "^4.0.2"
-  },
   "devDependencies": {
     "@dreipol/scss-mq": "^2.0.0",
     "@dreipol/stylelint-config": "^7.0.0",

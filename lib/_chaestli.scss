@@ -1,225 +1,52 @@
-/* stylelint-disable scss/declaration-nested-properties */
-////
-/// Grid library for all your basic grid needs!
-////
-/// Dependencies and components
-///
-@use '../vendor/@dreipol/scss-utils/mixins/at-root' as *;
-@use './chaestli__vars' as *;
 @use './chaestli__helpers' as *;
 
-/// Add basic grid styling to elements with a certain naming convention adapted from bootstrap
-/// @param {string} $cfg.root - A root module name (BEM) including a dot
-/// @param {string} $cfg.container - BEM element describing a container
-/// @param {string} $cfg.row - BEM element describing a row
-/// @param {List} $cfg.cols - One or multiple BEM element describing a col
-/// @param {string|number} $cfg.container-size - The grid-container's size
+/// Create a grid container defining the width of the main content and the edges
+/// @param {Map} $definition - A single container structure definition
 ///
-@mixin root($cfg: ()) {
-    // Merge default values with config
-    $defaults: (
-        root: bem-root(),
-        container: 'container',
-        repeat-directive: 'auto-fit',
-        num-cols: 12,
-        edge: null,
-        gutter: 0,
-        debug: null,
-        row: 'row',
-        cols: ('col'),
-    );
-    $cfg: map-merge($defaults, $cfg);
+@mixin container($definition) {
+    $definition: create-container-config($definition);
 
-    // Write config values into variables for code readability
-    $cfg-root: map-get($cfg, 'root');
-    $cfg-container: map-get($cfg, 'container');
-    $cfg-edge: map-get($cfg, 'edge');
-    $cfg-gutter: map-get($cfg, 'gutter');
-    $cfg-repeat-directive: map-get($cfg, 'repeat-directive');
-    $cfg-num-cols: map-get($cfg, 'num-cols');
-    $cfg-row: map-get($cfg, 'row');
-    $cfg-debug: map-get($cfg, 'debug');
-    $cfg-cols: map-get($cfg, 'cols');
+    // read config variables
+    $container-size: map-get($definition, 'container-size');
+    $display: map-get($definition, 'display');
+    $grid-template-areas: map-get($definition, 'grid-template-areas');
+    $edge: map-get($definition, 'edge') * 1px;
 
-    // Calculate additionally needed values
-    $edges: configurate-gutter(if($cfg-edge, $cfg-edge, $cfg-gutter));
-    $col-names: col-name-list($cfg-root, $cfg-cols...);
-    $column-gap: get-column-gap($cfg-gutter);
+    // prepare variables to render
+    $has-container-size: type-of($container-size) == 'number';
+    $content-width: if($has-container-size, $container-size - (2 * $edge), auto);
+    $border-width: if($has-container-size, 1fr, 0);
 
-    #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-        display: grid;
-        width: 100%;
-        margin: auto;
-
-        @include write-gutter('padding', $edges);
-
-        #{$cfg-root}#{$bem-element-separator}#{$cfg-container}:not(.u-iknowwhatimdoing) {
-            // NOTE: Nested containers are not allowed, please nest rows/cols instead!
-            visibility: hidden !important; // stylelint-disable-line declaration-no-important
-
-            &::before {
-                visibility: visible;
-                content: 'Nested `container` detected!';
-                font-size: 20px;
-                line-height: 1.2;
-                color: red; // stylelint-disable-line color-named
-            }
-        }
-    }
-
-    #{$cfg-root}#{$bem-element-separator}#{$cfg-row} {
-        display: grid;
-        column-gap: $column-gap;
-        grid-template-columns: repeat(#{$cfg-repeat-directive}, minmax(calc(#{100% / $cfg-num-cols} - #{$column-gap}), 1fr));
-
-        // enable the grid debugging
-        @if $cfg-debug {
-            @include debugger((
-                edge: $cfg-edge,
-                gutter: $cfg-gutter
-            ), $cfg-debug);
-        }
-    }
-
-    #{$col-names} {
-        position: relative;
-        min-height: 1px;
-        max-width: 100%;
-    }
+    // render css props
+    display: $display;
+    grid-template-areas: $grid-template-areas;
+    grid-template-columns: $border-width $content-width $border-width;
+    column-gap: $edge;
 }
 
-/// Move a column in any direction using its css margin property
-/// @param {string} $cfg.direction - Either one of these values: `left` `right` `top` `bottom`
-/// @param {unitless} $cfg.ratio - A unitless ratio value (0 < x <= 1)
+/// Define a grid structure
+/// @param {Map} $definition - A single grid structure definition
 ///
-@mixin move-col($cfg) {
-    $defaults: (
-        direction: null,
-        ratio: null,
-    );
+@mixin grid($definition) {
+    $definition: create-grid-config($definition);
 
-    $cfg: map-merge($defaults, $cfg);
-    $cfg-direction: map-get($cfg, 'direction');
-    $cfg-ratio: map-get($cfg, 'ratio');
+    // read config variables
+    $gutter: map-get($definition, 'gutter') * 1px;
+    $repeat-directive: map-get($definition, 'repeat-directive');
+    $num-cols: map-get($definition, 'num-cols');
 
-    $percentage: (100% * $cfg-ratio);
-
-    margin-#{$cfg-direction}: $percentage;
-}
-
-/// Move a column from left to right
-@mixin push($cfg: ()) {
-    @include move-col(map-merge($cfg, (direction: 'left')));
-}
-
-/// Move a column from right to left
-@mixin pull($cfg: ()) {
-    @include move-col(map-merge($cfg, (direction: 'right')));
-}
-
-/// Define the maximum size of a grid by adding a `max-width` to the container
-/// @param {string} $cfg.root - A root module name (BEM) including a dot
-/// @param {string} $cfg.container - BEM element describing a container
-/// @param {string|number} $cfg.container-size - The grid-container's size
-///
-@mixin constrain($cfg: ()) {
-    // Merge default values with config
-    $defaults: (
-        root: bem-root(),
-        container: 'container',
-        container-size: none,
-        size-prop: 'max-width',
-    );
-    $cfg: map-merge($defaults, $cfg);
-
-    // Write config values into variables for code readability
-    $cfg-root: map-get($cfg, 'root');
-    $cfg-container: map-get($cfg, 'container');
-    $cfg-container-size: map-get($cfg, 'container-size');
-    $cfg-size-prop: map-get($cfg, 'size-prop');
-
-    #{$cfg-root}#{$bem-element-separator}#{$cfg-container} {
-        #{$cfg-size-prop}: $cfg-container-size;
-    }
+    // render css props
+    grid-template-columns: repeat(#{$repeat-directive}, minmax(calc(#{100% / $num-cols} - #{$gutter}), 1fr));
+    column-gap: $gutter;
 }
 
 /// Alias for grid-column
 /// @param {number|string} $ratio - any value compatible to the grid-column rule
 ///
-@mixin col($ratio) {
+@mixin column($ratio) {
     @if type-of($ratio) == string {
         grid-column: #{$ratio};
     } @else {
         grid-column: $ratio;
-    }
-}
-
-/// Allows the grid debugging coloring the rows background showing the columns and the edges
-/// @param {number} $grid-cfg.gutter - The inner gutter size
-/// @param {number} $grid-cfg.edge - The edge clearance in any spacial unit
-/// @param {number} $cfg.columns - The amount of columns we want to debug
-/// @param {number} $cfg.column-color - The color used to debug the columns
-/// @param {number} $cfg.gutter-color - The color used to debug the gutter
-/// @param {number} $cfg.edge-color - The color to highlight the external edges
-///
-@mixin debugger(
-    $grid-cfg,
-    $cfg
-) {
-    $defaults: (
-        column-color: rgba(0, 0, 0, 0.2),
-        edge-color: rgba(0, 0, 0, 0),
-        gutter-color: rgba(0, 0, 0, 0),
-        columns: null
-    );
-
-    @if not map-get($cfg, 'columns') {
-        @error 'Please define the columns amount to debug the grid';
-    }
-
-    $cfg: map-merge($defaults, $cfg);
-
-    $cfg-gutter: map-get($grid-cfg, 'gutter');
-    $cfg-edge: map-get($grid-cfg, 'edge');
-    $cfg-columns: map-get($cfg, 'columns');
-    $cfg-gutter-color: map-get($cfg, 'gutter-color');
-    $cfg-edge-color: map-get($cfg, 'edge-color');
-    $cfg-column-color: map-get($cfg, 'column-color');
-
-    $half-gutter: $cfg-gutter / 2;
-    $gradient-start: $half-gutter;
-    $gradient-end: calc(100% - #{$half-gutter});
-
-    position: relative;
-    background: {
-        image: linear-gradient(
-            to right,
-            $cfg-gutter-color $gradient-start,
-            $cfg-column-color $gradient-start,
-            $cfg-column-color $gradient-end,
-            $cfg-gutter-color $gradient-end
-        );
-        size: 1 / $cfg-columns * 100%;
-        position: left top;
-        clip: content-box;
-        origin: content-box;
-    };
-
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        height: 100%;
-        width: $cfg-edge;
-        background: $cfg-edge-color;
-    }
-
-    &::before {
-        right: calc(100% - #{$half-gutter});
-    }
-
-    &::after {
-        left: calc(100% - #{$half-gutter});
     }
 }
