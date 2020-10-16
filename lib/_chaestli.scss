@@ -40,7 +40,7 @@
     $num-cols: map.get($definition, 'num-cols');
 
     // prepare variables to render
-    $column-size: if($gutter > 0, calc(#{100%} / #{$num-cols} - #{$gutter * 0.5}), calc(#{100%} / #{$num-cols}));
+    $column-size: if($gutter > 0, calc(#{100%} / #{$num-cols} - #{$gutter}), calc(#{100%} / #{$num-cols}));
 
     // render css props
     display: $display;
@@ -52,7 +52,7 @@
 /// @param {list|number} $start - column start
 /// @param {list|number} $end - column end
 ///
-@mixin column($start, $end) {
+@mixin column($start, $end: null) {
     @if ($end) {
         grid-column: #{$start} / #{$end};
     } @else {
