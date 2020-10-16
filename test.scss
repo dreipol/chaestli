@@ -2,7 +2,7 @@
 
 .grid {
     .grid--container {
-        @include grid.container((edge: 28px));
+        @include grid.container((edge: 28px, container-size: 500px));
     }
 
     .grid--row {
@@ -10,6 +10,6 @@
     }
 
     .grid--col {
-        @include grid.column(1 / 12);
+        @include grid.column(span 1, span 12);
     }
 }
