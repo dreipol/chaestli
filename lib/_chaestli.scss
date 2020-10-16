@@ -9,20 +9,22 @@
 
     // read config variables
     $container-size: map.get($definition, 'container-size');
-    $display: map.get($definition, 'display');
-    $grid-template-areas: map.get($definition, 'grid-template-areas');
     $edge: map.get($definition, 'edge');
 
     // prepare variables to render
     $has-container-size: type-of($container-size) == 'number';
-    $content-width: if($has-container-size, $container-size - (2 * $edge), 100%);
-    $border-width: if($has-container-size, 1fr, 0);
+    $content-width: if($has-container-size, $container-size - (2 * $edge), auto);
 
     // render css props
-    display: $display;
-    grid-template-areas: $grid-template-areas;
-    grid-template-columns: $border-width $content-width $border-width;
-    column-gap: $edge;
+    max-width: $content-width;
+    margin: {
+        left: auto;
+        right: auto;
+    };
+    padding: {
+        left: $edge;
+        right: $edge;
+    };
 }
 
 /// Define a grid structure
@@ -34,13 +36,11 @@
     // read config variables
     $gutter: map.get($definition, 'gutter');
     $display: map.get($definition, 'display');
-    $grid-area: map.get($definition, 'grid-area');
     $repeat-directive: map.get($definition, 'repeat-directive');
     $num-cols: map.get($definition, 'num-cols');
 
     // render css props
     display: $display;
-    grid-area: $grid-area;
     grid-template-columns: repeat(#{$repeat-directive}, calc(#{100%} / #{$num-cols} - #{$gutter}));
     column-gap: $gutter;
 }
