@@ -2,8 +2,8 @@
 
 $demo-sections: (
     (id: 'ant', label: '1/12', ratio: (span 1, span 12), color: rgba(#000, 0.04)),
-    (id: 'gazelle', label: '3/6', ratio: (span 3, span 12), color: rgba(#000, 0.08)),
-    (id: 'lion', label: '2/12', ratio: (span 2, span 12), color: rgba(#000, 0.10)),
+    (id: 'gazelle', label: '2/12', ratio: (span 2, span 12), color: rgba(#000, 0.08)),
+    (id: 'lion', label: '3/12', ratio: (span 3, span 12), color: rgba(#000, 0.10)),
     (id: 'girafe', label: '4/12', ratio: (span 4, span 12), color: rgba(#000, 0.12)),
     (id: 'rhino', label: '6/12', ratio: (span 6, span 12), color: rgba(#000, 0.14)),
     (id: 'elephant', label: '12/12', ratio: (span 12, span 12), color: rgba(#000, 0.16)),
@@ -62,7 +62,7 @@ $demo-sections: (
         }
 
         &.demo__col-push.demo__col-push {
-            @include grid.column(3, 12);
+            @include grid.column(4, span 3);
 
             > .demo__block.demo__block {
                 &::after {
@@ -72,9 +72,7 @@ $demo-sections: (
         }
 
         &.demo__col-pull.demo__col-pull {
-            margin-left: auto;
-
-            @include grid.column(3, -3);
+            @include grid.column(7, span 3);
 
             > .demo__block.demo__block {
                 &::after {
