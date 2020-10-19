@@ -1,7 +1,7 @@
-@use '../../../../../index' as grid;
+@use '../../../../../index' as chaestli;
 
 .grid.grid--plain-showcase {
     .grid__row {
-        @include grid.grid;
+        @include chaestli.grid;
     }
 }

@@ -1,4 +1,4 @@
-@use '../../../index' as grid;
+@use '../../../index' as chaestli;
 
 $demo-sections: (
     (id: 'ant', label: '1/12', ratio: (span 1, span 12), color: rgba(#000, 0.04)),
@@ -64,7 +64,7 @@ $demo-sections: (
         }
 
         &.demo__col-push.demo__col-push {
-            @include grid.column(4, span 3);
+            @include chaestli.column(4, span 3);
 
             > .demo__block.demo__block {
                 &::after {
@@ -74,7 +74,7 @@ $demo-sections: (
         }
 
         &.demo__col-pull.demo__col-pull {
-            @include grid.column(7, span 3);
+            @include chaestli.column(7, span 3);
 
             > .demo__block.demo__block {
                 &::after {

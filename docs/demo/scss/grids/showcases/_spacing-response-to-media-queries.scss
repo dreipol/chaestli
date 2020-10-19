@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../../../../index' as grid;
+@use '../../../../../index' as chaestli;
 @use '../../../../../vendor/@dreipol/scss-mq' as *;
 
 .grid.grid--spacing-response-to-media-queries-showcase {
@@ -16,7 +16,7 @@
     @each $value in $spacing {
         .grid__container {
             @include mq(map-get($value, 'mq')) {
-                @include grid.container($value);
+                @include chaestli.container($value);
             }
         }
     }
@@ -24,7 +24,7 @@
     @each $value in $spacing {
         .grid__row {
             @include mq(map-get($value, 'mq')) {
-                @include grid.grid(map.merge($value, (num-cols: 12)));
+                @include chaestli.grid(map.merge($value, (num-cols: 12)));
             }
         }
     }

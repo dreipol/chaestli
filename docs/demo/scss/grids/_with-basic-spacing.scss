@@ -1,4 +1,4 @@
-@use '../../../../index' as grid;
+@use '../../../../index' as chaestli;
 @use '../../../../vendor/@dreipol/scss-mq' as *;
 
 .grid.grid--with-basic-spacing {
@@ -15,12 +15,12 @@
     @each $value in $container-sizes {
         .grid__container {
             @include mq(map-get($value, 'mq')) {
-                @include grid.container($value);
+                @include chaestli.container($value);
             }
         }
     }
 
     .grid__row {
-        @include grid.grid((num-cols: 12, gutter: (8px 8px)));
+        @include chaestli.grid((num-cols: 12, gutter: (8px 8px)));
     }
 }

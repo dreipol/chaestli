@@ -1,5 +1,5 @@
 @use '../../../../vendor/@dreipol/scss-mq' as *;
-@use '../../../../index' as grid;
+@use '../../../../index' as chaestli;
 
 .grid.grid--with-fixed-container-size {
     $scrollbar-offset: 16px;
@@ -15,7 +15,7 @@
     @each $value in $container-sizes {
         .grid__container {
             @include mq(map-get($value, 'mq')) {
-                @include grid.container($value);
+                @include chaestli.container($value);
             }
         }
     }

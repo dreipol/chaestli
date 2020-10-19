@@ -1,4 +1,4 @@
-@use '../../../../../index' as grid;
+@use '../../../../../index' as chaestli;
 @use '../../../../../vendor/@dreipol/scss-mq' as *;
 
 .demo.demo--spanning-response-to-media-queries-showcase {
@@ -12,13 +12,13 @@
     );
 
     .grid__row {
-        @include grid.grid((num-cols: 12, gutter: (16px, 16px)));
+        @include chaestli.grid((num-cols: 12, gutter: (16px, 16px)));
     }
 
     .demo__col.demo__col--ant {
         @each $value in $spanning {
             @include mq(map-get($value, 'mq')) {
-                @include grid.column(nth(map-get($value, 'ratio'), 1), nth(map-get($value, 'ratio'), 2));
+                @include chaestli.column(nth(map-get($value, 'ratio'), 1), nth(map-get($value, 'ratio'), 2));
             }
         }
     }
