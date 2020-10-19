@@ -19,7 +19,6 @@
     "url": "git+https://github.com/dreipol/chaestli.git"
   },
   "files": [
-    "vendor",
     "lib",
     "_index.scss"
   ],

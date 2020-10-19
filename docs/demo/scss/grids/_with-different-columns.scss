@@ -1,5 +1,5 @@
 @use '../../../../index' as chaestli;
-@use '../../../../vendor/@dreipol/scss-mq' as *;
+@use '../../../../node_modules/@dreipol/scss-mq' as *;
 
 .grid.grid--with-different-columns {
     $scrollbar-offset: 16px;
