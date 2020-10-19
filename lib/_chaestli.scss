@@ -42,7 +42,8 @@
     };
 }
 
-/// Define a grid structure
+/// Enable the `display: grid;` on a container element. Notice that you can define the amount of columns your grid will have
+/// and the vertical and horizontal gaps of its items
 /// @param {Map} $definition - A single grid structure definition
 ///
 /// @example scss - Simple 12 columns grid with rows and cols gutter: input
@@ -82,7 +83,7 @@
     row-gap: $row-gap;
 }
 
-/// Just an alias for grid-column
+/// Just as syntax sugar aliasing the `grid-column` rule
 /// @param {list|number} $start - column start
 /// @param {list|number} $end - column end
 /// @example scss - Simple column 3 span over 12 columns: input
