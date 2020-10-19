@@ -1,9 +1,9 @@
-@use '../../../../index' as grid;
+@use '../../../../index' as chaestli;
 
 .demo.demo--with-demo-columns {
     @each $value in $demo-sections {
         .demo__col.demo__col--#{map-get($value, 'id')} {
-            @include grid.column(nth(map-get($value, 'ratio'), 1), nth(map-get($value, 'ratio'), 2));
+            @include chaestli.column(nth(map-get($value, 'ratio'), 1), nth(map-get($value, 'ratio'), 2));
         }
     }
 }

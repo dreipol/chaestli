@@ -1,7 +1,7 @@
-@use '../../../../../index' as grid;
+@use '../../../../../index' as chaestli;
 
 .grid.grid--four-side-spacing-showcase {
     .grid__row {
-        @include grid.grid((gutter: (16px 16px), num-cols: 12));
+        @include chaestli.grid((gutter: (16px 16px), num-cols: 12));
     }
 }

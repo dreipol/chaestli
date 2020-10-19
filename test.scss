@@ -1,15 +1,15 @@
-@use './index' as grid;
+@use './index' as chaestli;
 
 .grid {
     .grid--container {
-        @include grid.container((edge: 28px, container-size: 500px));
+        @include chaestli.container((edge: 28px, container-size: 500px));
     }
 
     .grid--row {
-        @include grid.grid((gutter: 28px, num-cols: 12));
+        @include chaestli.grid((gutter: 28px, num-cols: 12));
     }
 
     .grid--col {
-        @include grid.column(span 1, span 12);
+        @include chaestli.column(span 1, span 12);
     }
 }

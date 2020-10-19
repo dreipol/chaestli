@@ -1,8 +1,23 @@
 @use 'sass:map';
 @use './chaestli__helpers' as *;
 
-/// Create a grid container defining the width of the main content and the edges
+/// Create a grid container defining the width of the main content and its edges
 /// @param {Map} $definition - A single container structure definition
+/// @example scss - Simple container: input
+///  .grid {
+///      .grid__container {
+///          @include chaestli.container((edge: 16px, container-size: 800px));
+///      }
+///  }
+///
+/// @output
+///  .grid .grid__container {
+///      max-width: 800px;
+///      margin-left: auto;
+///      margin-left: auto;
+///      padding-left: 16px;
+///      margin-left: 16px;
+///  }
 ///
 @mixin container($definition: ()) {
     $definition: create-container-config($definition);
@@ -30,6 +45,21 @@
 /// Define a grid structure
 /// @param {Map} $definition - A single grid structure definition
 ///
+/// @example scss - Simple 12 columns grid with rows and cols gutter: input
+///  .grid {
+///      .grid__row {
+///          @include chaestli.grid((gutter: (16px, 24px), num-cols: 12));
+///      }
+///  }
+///
+/// @output
+///  .grid .grid__row {
+///      display: grid;
+///      grid-template-columns: repeat(auto-fill, minmax(calc(100% / 12 - 16px), 1fr));
+///      column-gap: 16px;
+///      row-gap: 24px;
+///  }
+///
 @mixin grid($definition: ()) {
     $definition: create-grid-config($definition);
 
@@ -43,7 +73,7 @@
     $gaps: get-grid-gaps($gutter);
     $column-gap: map.get($gaps, 'column');
     $row-gap: map.get($gaps, 'row');
-    $column-size: if($column-gap > 0, calc(#{100%} / #{$num-cols} - #{$column-gap}), calc(#{100%} / #{$num-cols}));
+    $column-size: if($column-gap > 0, calc(100% / #{$num-cols} - #{$column-gap}), calc(100% / #{$num-cols}));
 
     // render css props
     display: $display;
@@ -55,7 +85,17 @@
 /// Just an alias for grid-column
 /// @param {list|number} $start - column start
 /// @param {list|number} $end - column end
+/// @example scss - Simple column 3 span over 12 columns: input
+///  .grid {
+///      .grid__three-col {
+///          @include chaestli.column(3 span, 12 span);
+///      }
+///  }
 ///
+/// @output
+///  .grid .grid__three-col {
+///      grid-column: 3 span / 12 span;
+///  }
 @mixin column($start, $end: null) {
     @if ($end) {
         grid-column: #{$start} / #{$end};
