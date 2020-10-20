@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/dreipol/scss-mq/master/logo.jpg" width="50%"/>
+
 # chaestli
 Dreipol scss grid system
 
@@ -6,16 +8,52 @@ Dreipol scss grid system
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
 
-# Installation
+
+# Documentation
+
+- [API](https://www.dreipol.dev/chaestli/)
+- [Demo](https://www.dreipol.dev/chaestli/demo)
+
+## Available mixins
+
+Chaestli exports only 3 mixins (`chaestli.container`, `chaestli.grid`, `chaestli.column`) that combined together should be enough to scaffold your grid setup. For example:
+
+```scss
+@use 'node_modules/@dreipol/chaestli';
+
+.grid {
+    .grid__container {
+        // a container having a max-with of 1024px with 16px lateral padding
+        @include chaestli.container(( width: 1024px, edge: 16px ));
+    }
+   
+    .grid__row {
+        // a grid made of 12 columns with 8px lateral gutter
+        @include chaestli.grid(( gutter: 8px, num-cols: 12 ));
+    }
+
+    .grid__small-col {
+        @include chaestli.column(2 span, 12 span);
+    }
+
+    .grid__medium-col {
+        @include chaestli.column(4 span, 12 span);
+    }
+
+    .grid__big-col {
+        @include chaestli.column(8 span, 12 span);
+    }
+}
+```
+
+# Usage 
+
+## Installation
+
 
 ```bash
 npm i chaestli -S
 ```
-
-# Documentation
-
-While the documentation is under construction, you can find some barebone examples in the [demo page](https://dreipol.github.io/chaestli/demo)
-
 
 [travis-image]:https://img.shields.io/travis/dreipol/chaestli.svg?style=flat-square
 [travis-url]:https://travis-ci.org/dreipol/chaestli

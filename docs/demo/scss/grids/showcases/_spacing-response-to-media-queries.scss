@@ -5,12 +5,12 @@
 .grid.grid--spacing-response-to-media-queries-showcase {
     $scrollbar-offset: 16px;
     $spacing: (
-        (mq: 'xs', gutter: 4px, edge: 2px, container-size: none),
-        (mq: 'sm', gutter: 8px, edge: 2px, container-size: $screen-sm-min),
-        (mq: 'md', gutter: 16px, edge: 64px, container-size: ($screen-md-min - $scrollbar-offset - 8px)),
-        (mq: 'lg', gutter: 32px, edge: 64px, container-size: ($screen-lg-min - $scrollbar-offset - 8px)),
-        (mq: 'xl', gutter: 48px, edge: 128px, container-size: ($screen-xl-min - $scrollbar-offset - 4px)),
-        (mq: 'xxl', gutter: 64px, edge: 128px, container-size: ($screen-xxl-min - $scrollbar-offset - 8px)),
+        (mq: 'xs', gutter: 4px, edge: 2px, width: none),
+        (mq: 'sm', gutter: 8px, edge: 2px, width: $screen-sm-min),
+        (mq: 'md', gutter: 16px, edge: 64px, width: ($screen-md-min - $scrollbar-offset - 8px)),
+        (mq: 'lg', gutter: 32px, edge: 64px, width: ($screen-lg-min - $scrollbar-offset - 8px)),
+        (mq: 'xl', gutter: 48px, edge: 128px, width: ($screen-xl-min - $scrollbar-offset - 4px)),
+        (mq: 'xxl', gutter: 64px, edge: 128px, width: ($screen-xxl-min - $scrollbar-offset - 8px)),
     );
 
     @each $value in $spacing {

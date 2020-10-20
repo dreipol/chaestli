@@ -1,18 +1,18 @@
 @use '../../../../node_modules/@dreipol/scss-mq' as *;
 @use '../../../../index' as chaestli;
 
-.grid.grid--with-fixed-container-size {
+.grid.grid--with-fixed-width {
     $scrollbar-offset: 16px;
-    $container-sizes: (
-        (mq: 'xs', container-size: none),
-        (mq: 'sm', container-size: $screen-sm-min),
-        (mq: 'md', container-size: ($screen-md-min - $scrollbar-offset - 8px)),
-        (mq: 'lg', container-size: ($screen-lg-min - $scrollbar-offset - 8px)),
-        (mq: 'xl', container-size: ($screen-xl-min - $scrollbar-offset - 4px)),
-        (mq: 'xxl', container-size: ($screen-xxl-min - $scrollbar-offset - 8px)),
+    $widths: (
+        (mq: 'xs', width: none),
+        (mq: 'sm', width: $screen-sm-min),
+        (mq: 'md', width: ($screen-md-min - $scrollbar-offset - 8px)),
+        (mq: 'lg', width: ($screen-lg-min - $scrollbar-offset - 8px)),
+        (mq: 'xl', width: ($screen-xl-min - $scrollbar-offset - 4px)),
+        (mq: 'xxl', width: ($screen-xxl-min - $scrollbar-offset - 8px)),
     );
 
-    @each $value in $container-sizes {
+    @each $value in $widths {
         .grid__container {
             @include mq(map-get($value, 'mq')) {
                 @include chaestli.container($value);

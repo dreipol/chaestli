@@ -3,16 +3,16 @@
 
 .grid.grid--with-different-columns {
     $scrollbar-offset: 16px;
-    $container-sizes: (
-        (mq: 'xs', edge: 16px, container-size: none),
-        (mq: 'sm', edge: 16px, container-size: $screen-sm-min),
-        (mq: 'md', edge: 16px, container-size: ($screen-md-min - $scrollbar-offset - 8px)),
-        (mq: 'lg', edge: 16px, container-size: ($screen-lg-min - $scrollbar-offset - 8px)),
-        (mq: 'xl', edge: 16px, container-size: ($screen-xl-min - $scrollbar-offset - 4px)),
-        (mq: 'xxl', edge: 16px, container-size: ($screen-xxl-min - $scrollbar-offset - 8px)),
+    $widths: (
+        (mq: 'xs', edge: 16px, width: none),
+        (mq: 'sm', edge: 16px, width: $screen-sm-min),
+        (mq: 'md', edge: 16px, width: ($screen-md-min - $scrollbar-offset - 8px)),
+        (mq: 'lg', edge: 16px, width: ($screen-lg-min - $scrollbar-offset - 8px)),
+        (mq: 'xl', edge: 16px, width: ($screen-xl-min - $scrollbar-offset - 4px)),
+        (mq: 'xxl', edge: 16px, width: ($screen-xxl-min - $scrollbar-offset - 8px)),
     );
 
-    @each $value in $container-sizes {
+    @each $value in $widths {
         .grid__container {
             @include mq(map-get($value, 'mq')) {
                 @include chaestli.container($value);

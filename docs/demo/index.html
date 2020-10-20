@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
 
         <title>Demo</title>
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/github.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/atelier-lakeside-dark.min.css">
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
         <link href="index.css" rel="stylesheet" type="text/css"/>
         <script>hljs.initHighlightingOnLoad();</script>
@@ -65,7 +66,7 @@
             </div>
         </div>
 
-        <div class="demo demo--fixed-container-size-showcase">
+        <div class="demo demo--fixed-width-showcase">
             <div class="documentation__block">
                 <h2>
                     Fixed container size
@@ -76,15 +77,15 @@
                     A container is also necessary when defining the space between the edges and the beginning of the
                     grid.
                 </p>
-                <p>Using the <code>container-size</code> property you can customize the size of your container</p>
+                <p>Using the <code>width</code> property you can customize the size of your container</p>
                 <pre><code class="scss">.grid {
   .grid__container {
-    @include chaestli.container((container-size: 800px));
+    @include chaestli.container((width: 800px));
   }
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--fixed-container-size-showcase">
+                <div class="grid grid--fixed-width-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col">
@@ -116,7 +117,7 @@
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--column-size-showcase">
+                <div class="grid grid--with-fixed-width grid--column-size-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--ant">
@@ -155,7 +156,7 @@
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
+                <div class="grid grid--with-fixed-width grid--basic-spacing-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--ant">
@@ -198,7 +199,7 @@
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--basic-spacing-showcase">
+                <div class="grid grid--with-fixed-width grid--basic-spacing-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--lion demo__col-push">
@@ -244,7 +245,7 @@
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--four-side-spacing-showcase">
+                <div class="grid grid--with-fixed-width grid--four-side-spacing-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--ant">
@@ -278,12 +279,12 @@
                 </p>
                 <pre><code class="scss">.grid {
   .grid__container {
-    @include chaestli.container((edge: 16px, container-size: 800px));
+    @include chaestli.container((edge: 16px, width: 800px));
   }
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--edge-spacing-showcase">
+                <div class="grid grid--with-fixed-width grid--edge-spacing-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--ant">
@@ -308,7 +309,7 @@
         </div>
         <div class="demo documentation__block">
                 <h1>
-                    Advanced example
+                    Advanced examples
                 </h1>
                 <p>
                     The following examples show how you can combine <code>chaestli</code> with <a href="https://github.com/dreipol/scss-mq" target="_blank"><code>@dreipol/scss-mq</code></code></a>
@@ -326,10 +327,10 @@
                 </p>
                 <pre><code class="scss">.grid {
   .grid__container {
-    @include chaestli.container((edge: 16px, container-size: 1200px));
+    @include chaestli.container((edge: 16px, width: 1200px));
 
     @include mq('<=sm') {
-      @include chaestli.container((edge: 8px, container-size: 800px));
+      @include chaestli.container((edge: 8px, width: 800px));
     }
   }
 
@@ -343,7 +344,7 @@
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--spacing-response-to-media-queries-showcase">
+                <div class="grid grid--with-fixed-width grid--spacing-response-to-media-queries-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--ant">
@@ -390,7 +391,7 @@
 }</code></pre>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--with-basic-spacing grid--spanning-response-to-media-queries-showcase">
+                <div class="grid grid--with-fixed-width grid--with-basic-spacing grid--spanning-response-to-media-queries-showcase">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--ant">
@@ -445,7 +446,7 @@
                 </p>
             </div>
             <div class="demo__content">
-                <div class="grid grid--with-fixed-container-size grid--with-different-columns">
+                <div class="grid grid--with-fixed-width grid--with-different-columns">
                     <div class="grid__container">
                         <div class="grid__row">
                             <div class="grid__col demo__col demo__col--snake">

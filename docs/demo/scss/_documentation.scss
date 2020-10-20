@@ -3,17 +3,17 @@
 
 .documentation {
     $scrollbar-offset: 16px;
-    $container-sizes: (
-        (mq: 'xs', container: 'block', container-size: none, edge: 16px),
-        (mq: 'sm', container: 'block', container-size: $screen-sm-min, edge: 16px),
-        (mq: 'md', container: 'block', container-size: ($screen-md-min - $scrollbar-offset - 8px), edge: 16px),
-        (mq: 'lg', container: 'block', container-size: ($screen-lg-min - $scrollbar-offset - 8px), edge: 16px),
-        (mq: 'xl', container: 'block', container-size: ($screen-xl-min - $scrollbar-offset - 4px), edge: 16px),
-        (mq: 'xxl', container: 'block', container-size: ($screen-xxl-min - $scrollbar-offset - 8px), edge: 16px),
+    $widths: (
+        (mq: 'xs', container: 'block', width: none, edge: 16px),
+        (mq: 'sm', container: 'block', width: $screen-sm-min, edge: 16px),
+        (mq: 'md', container: 'block', width: ($screen-md-min - $scrollbar-offset - 8px), edge: 16px),
+        (mq: 'lg', container: 'block', width: ($screen-lg-min - $scrollbar-offset - 8px), edge: 16px),
+        (mq: 'xl', container: 'block', width: ($screen-lg-min - $scrollbar-offset - 4px), edge: 16px),
+        (mq: 'xxl', container: 'block', width: ($screen-lg-min - $scrollbar-offset - 8px), edge: 16px),
     );
 
     .documentation__block {
-        @each $value in $container-sizes {
+        @each $value in $widths {
             @include mq(map-get($value, 'mq')) {
                 @include chaestli.container($value);
             }

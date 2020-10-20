@@ -7,7 +7,7 @@
 ///
 @function create-container-config($cfg) {
     $defaults: (
-        container-size: none,
+        width: none,
         edge: 0,
     );
 

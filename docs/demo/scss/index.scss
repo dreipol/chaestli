@@ -1,6 +1,8 @@
+@use '../../../node_modules/@dreipol/scss-mq' as *;
 @import '../../../index';
 
 @import 'reset';
+@import 'colors';
 @import 'typography';
 @import 'demo';
 @import 'documentation';
@@ -31,10 +33,15 @@ html {
     }
 
     background-color: transparent;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 62.5%;
+
+    @include mq('<=md') {
+        font-size: 56%;
+    }
 }
 
 body {
-    padding: 5.6rem 0;
+    padding: 4.2rem 0;
+    background: $background-color;
 }
