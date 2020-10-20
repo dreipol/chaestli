@@ -3,12 +3,12 @@
     $definition: create-container-config($definition);
 
     // read config variables
-    $container-size: map.get($definition, &#39;container-size&#39;);
+    $width: map.get($definition, &#39;width&#39;);
     $edge: map.get($definition, &#39;edge&#39;);
 
     // prepare variables to render
-    $has-container-size: type-of($container-size) == &#39;number&#39;;
-    $content-width: if($has-container-size, $container-size, none);
+    $has-width: type-of($width) == &#39;number&#39;;
+    $content-width: if($has-width, $width, none);
 
     // render css props
     max-width: $content-width;
@@ -22,7 +22,7 @@
     };
  }" data-collapsed="@mixin container($definition) { ... }"><code>@mixin container($definition) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Create a grid container defining the width of the main content and its edges</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$definition</code></th><td data-label="desc"><p>A single container structure definition</p></td><td data-label="type"><code>Map</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Simple container: input</p></div><pre class="example__code language-scss"><code>.grid {
     .grid__container {
-        @include chaestli.container((edge: 16px, container-size: 800px));
+        @include chaestli.container((edge: 16px, width: 800px));
     }
 }</code></pre></div><h3 class="item__sub-heading">Output</h3><div class="item__description"><p>.grid .grid__container { max-width: 800px; margin-left: auto; margin-left: auto; padding-left: 16px; margin-left: 16px; }</p></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#undefined-function-create-container-config"><code>create-container-config</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-grid"><h3 class="item__heading"><a class="item__name" href="#mixin-grid">grid</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin grid($definition) { 
     $definition: create-grid-config($definition);
@@ -60,7 +60,7 @@
     }
 }</code></pre></div><h3 class="item__sub-heading">Output</h3><div class="item__description"><p>.grid .grid__three-col { grid-column: 3 span / 12 span; }</p></div></section></section><section class="main__sub-section" id="undefined-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="undefined-function-create-container-config"><h3 class="item__heading"><a class="item__name" href="#function-create-container-config">create-container-config</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function create-container-config($cfg) { 
     $defaults: (
-        container-size: none,
+        width: none,
         edge: 0,
     );
 

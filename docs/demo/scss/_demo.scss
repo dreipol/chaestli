@@ -1,14 +1,14 @@
 @use '../../../index' as chaestli;
 
 $demo-sections: (
-    (id: 'ant', label: '1/12', ratio: (span 1, span 12), color: rgba(#000, 0.04)),
-    (id: 'gazelle', label: '2/12', ratio: (span 2, span 12), color: rgba(#000, 0.08)),
-    (id: 'snake', label: '1/8', ratio: (span 1, span 8), color: rgba(#000, 0.06)),
-    (id: 'dog', label: '6/12', ratio: (span 4, span 8), color: rgba(#000, 0.14)),
-    (id: 'lion', label: '3/12', ratio: (span 3, span 12), color: rgba(#000, 0.10)),
-    (id: 'girafe', label: '4/12', ratio: (span 4, span 12), color: rgba(#000, 0.12)),
-    (id: 'rhino', label: '6/12', ratio: (span 6, span 12), color: rgba(#000, 0.14)),
-    (id: 'elephant', label: '12/12', ratio: (span 12, span 12), color: rgba(#000, 0.16)),
+    (id: 'ant', label: '1/12', ratio: (span 1, span 12), color: rgba($dark-accent, 0.1)),
+    (id: 'gazelle', label: '2/12', ratio: (span 2, span 12), color: rgba($dark-accent, 0.12)),
+    (id: 'snake', label: '1/8', ratio: (span 1, span 8), color: rgba($dark-accent, 0.1)),
+    (id: 'dog', label: '6/12', ratio: (span 4, span 8), color: rgba($dark-accent, 0.1)),
+    (id: 'lion', label: '3/12', ratio: (span 3, span 12), color: rgba($dark-accent, 0.16)),
+    (id: 'girafe', label: '4/12', ratio: (span 4, span 12), color: rgba($dark-accent, 0.2)),
+    (id: 'rhino', label: '6/12', ratio: (span 6, span 12), color: rgba($dark-accent, 0.28)),
+    (id: 'elephant', label: '12/12', ratio: (span 12, span 12), color: rgba($dark-accent, 0.36)),
 );
 
 
@@ -25,25 +25,27 @@ $demo-sections: (
 
 .demo {
     ~ .demo {
-        margin-top: 5.6rem;
+        margin-top: 8rem;
     }
 
     .demo__content {
-        padding-top: 1.6rem;
-        padding-bottom: 1.6rem;
-        background-color: #f1f1f1;
+        padding-top: 3.2rem;
+        padding-bottom: 3.2rem;
+        background-color: lighten($dark-accent, 65%);
+        border-top: 1.6rem solid $dark-accent;
+        border-bottom: 1.6rem solid $dark-accent;
     }
 
     .demo__block {
+        display: flex;
         position: relative;
         width: 100%;
         height: 30px;
-        display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        background-color: rgba(#000, 0.02);
+        background-color: rgba(black, 0.05);
 
         &.demo__block--basic {
             width: 30px;

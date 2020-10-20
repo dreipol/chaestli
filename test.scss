@@ -2,7 +2,7 @@
 
 .grid {
     .grid--container {
-        @include chaestli.container((edge: 28px, container-size: 500px));
+        @include chaestli.container((edge: 28px, width: 500px));
     }
 
     .grid--row {

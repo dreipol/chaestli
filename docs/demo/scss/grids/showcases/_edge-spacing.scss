@@ -3,16 +3,16 @@
 
 .grid.grid--edge-spacing-showcase {
     $scrollbar-offset: 16px;
-    $container-sizes: (
-        (mq: 'xs', container-size: none, edge: 32px),
-        (mq: 'sm', container-size: $screen-sm-min, edge: 16px),
-        (mq: 'md', container-size: ($screen-md-min - $scrollbar-offset - 8px), edge: 32px),
-        (mq: 'lg', container-size: ($screen-lg-min - $scrollbar-offset - 8px), edge: 32px),
-        (mq: 'xl', container-size: ($screen-xl-min - $scrollbar-offset - 4px), edge: 32px),
-        (mq: 'xxl', container-size: ($screen-xxl-min - $scrollbar-offset - 8px), edge: 32px),
+    $widths: (
+        (mq: 'xs', width: none, edge: 32px),
+        (mq: 'sm', width: $screen-sm-min, edge: 16px),
+        (mq: 'md', width: ($screen-md-min - $scrollbar-offset - 8px), edge: 32px),
+        (mq: 'lg', width: ($screen-lg-min - $scrollbar-offset - 8px), edge: 32px),
+        (mq: 'xl', width: ($screen-xl-min - $scrollbar-offset - 4px), edge: 32px),
+        (mq: 'xxl', width: ($screen-xxl-min - $scrollbar-offset - 8px), edge: 32px),
     );
 
-    @each $value in $container-sizes {
+    @each $value in $widths {
         .grid__container {
             @include mq(map-get($value, 'mq')) {
                 @include chaestli.container($value);
