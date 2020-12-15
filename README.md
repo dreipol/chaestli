@@ -8,7 +8,6 @@ Dreipol scss grid system
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
 
-
 # Documentation
 
 - [API](https://www.dreipol.dev/chaestli/)
@@ -33,14 +32,17 @@ Chaestli exports only 3 mixins (`chaestli.container`, `chaestli.grid`, `chaestli
     }
 
     .grid__small-col {
+        // two columns over 12
         @include chaestli.column(2 span, 12 span);
     }
 
     .grid__medium-col {
+        // for columns over 12
         @include chaestli.column(4 span, 12 span);
     }
 
     .grid__big-col {
+        // eight columns over 12
         @include chaestli.column(8 span, 12 span);
     }
 }
