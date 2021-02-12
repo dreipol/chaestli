@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/dreipol/scss-mq/master/logo.jpg" width="50%"/>
+<img src="https://raw.githubusercontent.com/dreipol/chaestli/main/logo.png" width="50%"/>
 
 # chaestli
 Dreipol scss grid system
