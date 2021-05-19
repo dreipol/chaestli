@@ -27,8 +27,7 @@
     $edge: map.get($definition, 'edge');
 
     // prepare variables to render
-    $has-width: type-of($width) == 'number';
-    $content-width: if($has-width, $width, none);
+    $content-width: if($width, $width, none);
 
     // render css props
     max-width: $content-width;
@@ -74,7 +73,7 @@
     $gaps: get-grid-gaps($gutter);
     $column-gap: map.get($gaps, 'column');
     $row-gap: map.get($gaps, 'row');
-    $column-size: if($column-gap > 0, calc(100% / #{$num-cols} - #{$column-gap}), calc(100% / #{$num-cols}));
+    $column-size: if($column-gap, calc(100% / #{$num-cols} - #{$column-gap}), calc(100% / #{$num-cols}));
 
     // render css props
     display: $display;

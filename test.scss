@@ -3,13 +3,19 @@
 .grid {
     .grid--container {
         @include chaestli.container((edge: 28px, width: 500px));
+        // css vars
+        @include chaestli.container((edge: var(--edge), width: var(--width)));
     }
 
     .grid--row {
         @include chaestli.grid((gutter: 28px, num-cols: 12));
+        // css vars
+        @include chaestli.grid((gutter: var(--gutter), num-cols: var(--num-cols)));
     }
 
     .grid--col {
         @include chaestli.column(span 1, span 12);
+        // css vars
+        @include chaestli.column(var(--offset), var(--column-width));
     }
 }
