@@ -45,7 +45,7 @@
     "@dreipol/stylelint-config-bem-pattern": "^3.0.0",
     "@dreipol/stylelint-config-order": "^4.0.0",
     "@dreipol/stylelint-config-scss": "^3.0.0",
-    "node-sass": "4.14.1",
+    "node-sass": "7.0.0",
     "sassdoc": "^2.7.3",
     "stylelint": "^13.7.2",
     "stylelint-order": "^4.1.0",
